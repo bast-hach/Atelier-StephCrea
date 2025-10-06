@@ -211,6 +211,39 @@
   box-shadow: 0 0 5px rgba(185,136,92,0.4);
 }
 
+    /* --- Style pour la partie avis/temoignage --- */
+    .avis {
+  background-color: #f0ede9;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.avis h2 {
+  color: #b9885c;
+  font-family: 'Raleway', sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+#avisForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: auto;
+}
+
+#avisContainer {
+  margin-top: 2rem;
+}
+
+.avis-item {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
   </style>
 </head>
 <body>
@@ -313,6 +346,19 @@
     <!-- Changer les titres, images, descriptions et liens PayPal pour chaque œuvre -->
   </section>
 
+      <!-- creation de la section avis -->
+  <section class="avis">
+  <h2>Avis des clients</h2>
+
+  <form id="avisForm">
+    <input type="text" id="nom" placeholder="Votre nom" required>
+    <textarea id="message" placeholder="Votre avis" required></textarea>
+    <button type="submit">Envoyer</button>
+  </form>
+
+  <div id="avisContainer"></div>
+</section>
+
   <!-- Contact / Collaboration -->
   <section class="contact">
     <h2>Contact & Collaboration</h2>
@@ -375,6 +421,39 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+</script>
+
+   <!-- Script pour gerer l'envoi et l'affichage des avis --> 
+  <script>
+  const avisForm = document.getElementById('avisForm');
+  const avisContainer = document.getElementById('avisContainer');
+
+  avisForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nom = document.getElementById('nom').value;
+    const message = document.getElementById('message').value;
+
+    await db.collection('avis').add({
+      nom,
+      message,
+      date: new Date()
+    });
+
+    avisForm.reset();
+  });
+
+  db.collection('avis').orderBy('date', 'desc').onSnapshot(snapshot => {
+    avisContainer.innerHTML = '';
+    snapshot.forEach(doc => {
+      const avis = doc.data();
+      avisContainer.innerHTML += `
+        <div class="avis-item">
+          <strong>${avis.nom}</strong><br>
+          <p>${avis.message}</p>
+        </div>
+      `;
+    });
+  });
 </script>
 
 </body>
