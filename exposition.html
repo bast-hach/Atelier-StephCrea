@@ -188,6 +188,29 @@
       text-decoration: underline;
     }
 
+    /* --- Style de la barre de recherche --- */
+    .search-bar {
+  text-align: center;
+  margin: 2rem 0 1rem;
+}
+
+.search-bar input {
+  width: 300px;
+  max-width: 80%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-family: 'Lora', serif;
+  transition: 0.3s;
+}
+
+.search-bar input:focus {
+  border-color: #b9885c;
+  outline: none;
+  box-shadow: 0 0 5px rgba(185,136,92,0.4);
+}
+
   </style>
 </head>
 <body>
@@ -204,6 +227,11 @@
     <a href="a-propos.html">À propos</a>
   </nav>
 
+<!-- Barre de recherche -->
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Rechercher un produit...">
+</div>
+  
   <!-- Galerie -->
   <section class="gallery">
     <!-- Exemple de 24 œuvres (remplace les src, titres et descriptions) -->
@@ -252,6 +280,27 @@
     <a href="index.html">Accueil</a> | 
     <a href="a-propos.html">À propos</a>
   </footer>
+
+   <!-- Javascript pour la barre de recherche -->
+  <script>
+  const searchInput = document.getElementById('searchInput');
+  const items = document.querySelectorAll('.item');
+
+  searchInput.addEventListener('input', function() {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    items.forEach(item => {
+      const title = item.querySelector('h3').textContent.toLowerCase();
+      const description = item.querySelector('p').textContent.toLowerCase();
+
+      if (title.includes(searchTerm) || description.includes(searchTerm)) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
