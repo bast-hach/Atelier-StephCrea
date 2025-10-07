@@ -244,6 +244,32 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* --- Contact + Avis côte à côte --- */
+.contact-avis {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  background-color: #e9e4dc;
+  padding: 3rem 2rem;
+  flex-wrap: wrap;
+}
+
+.contact, .avis {
+  flex: 1 1 400px;
+  background-color: #f9f7f3;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.contact h2, .avis h2 {
+  font-family: 'Raleway', sans-serif;
+  color: #b9885c;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+    
   </style>
 </head>
 <body>
@@ -346,21 +372,9 @@
     <!-- Changer les titres, images, descriptions et liens PayPal pour chaque œuvre -->
   </section>
 
-      <!-- creation de la section avis -->
-  <section class="avis">
-  <h2>Avis des clients</h2>
-
-  <form id="avisForm">
-    <input type="text" id="nom" placeholder="Votre nom" required>
-    <textarea id="message" placeholder="Votre avis" required></textarea>
-    <button type="submit">Envoyer</button>
-  </form>
-
-  <div id="avisContainer"></div>
-</section>
-
-  <!-- Contact / Collaboration -->
-  <section class="contact">
+ <!-- Contact + Avis côte à côte -->
+<section class="contact-avis">
+  <div class="contact">
     <h2>Contact & Collaboration</h2>
     <form action="mailto:tonmail@example.com" method="post" enctype="text/plain">
       <input type="text" name="nom" placeholder="Votre nom" required>
@@ -368,7 +382,18 @@
       <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
       <button type="submit">Envoyer</button>
     </form>
-  </section>
+  </div>
+
+  <div class="avis">
+    <h2>Avis des clients</h2>
+    <form id="avisForm">
+      <input type="text" id="nom" placeholder="Votre nom" required>
+      <textarea id="message" placeholder="Votre avis" required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+    <div id="avisContainer"></div>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer>
