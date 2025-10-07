@@ -269,6 +269,71 @@
   margin-bottom: 1.5rem;
   text-align: center;
 }
+
+    <style>
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  padding: 3rem;
+  flex-wrap: wrap;
+}
+
+.contact, .avis {
+  background-color: #f7f4ef;
+  border-radius: 15px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 450px;
+  font-family: 'Lora', serif;
+}
+
+.contact h2, .avis h2 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.8rem;
+  color: #b9885c;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.contact input, .contact textarea,
+.avis input, .avis textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-family: 'Lora', serif;
+  transition: border-color 0.3s;
+}
+
+.contact input:focus, .contact textarea:focus,
+.avis input:focus, .avis textarea:focus {
+  border-color: #b9885c;
+  outline: none;
+  box-shadow: 0 0 5px rgba(185,136,92,0.3);
+}
+
+.contact button, .avis button {
+  background-color: #b9885c;
+  color: white;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.contact button:hover, .avis button:hover {
+  background-color: #9a6b45;
+}
+</style>
     
   </style>
 </head>
@@ -373,27 +438,27 @@
   </section>
 
  <!-- Contact + Avis côte à côte -->
-<section class="contact-avis">
-  <div class="contact">
-    <h2>Contact & Collaboration</h2>
-    <form action="mailto:tonmail@example.com" method="post" enctype="text/plain">
-      <input type="text" name="nom" placeholder="Votre nom" required>
-      <input type="email" name="email" placeholder="Votre email" required>
-      <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
-  </div>
-
-  <div class="avis">
+<div class="form-container">
+  <section class="avis">
     <h2>Avis des clients</h2>
-    <form id="avisForm">
-      <input type="text" id="nom" placeholder="Votre nom" required>
-      <textarea id="message" placeholder="Votre avis" required></textarea>
-      <button type="submit">Envoyer</button>
+    <form>
+      <input type="text" placeholder="Nom">
+      <input type="email" placeholder="Email">
+      <textarea rows="4" placeholder="Votre avis..."></textarea>
+      <button>Envoyer</button>
     </form>
-    <div id="avisContainer"></div>
-  </div>
-</section>
+  </section>
+
+  <section class="contact">
+    <h2>Contact / Collaboration</h2>
+    <form>
+      <input type="text" placeholder="Nom">
+      <input type="email" placeholder="Email">
+      <textarea rows="4" placeholder="Votre message..."></textarea>
+      <button>Envoyer</button>
+    </form>
+  </section>
+</div>
 
   <!-- Footer -->
   <footer>
