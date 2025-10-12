@@ -124,7 +124,7 @@
     }
 
     .contact input, .contact textarea,
-    .avis input, .avis textarea {
+    .avis input, .avis textarea, .avis select {
       width: 100%;
       padding: .75rem 1rem;
       border-radius: 10px;
@@ -136,7 +136,7 @@
     }
 
     .contact input:focus, .contact textarea:focus,
-    .avis input:focus, .avis textarea:focus {
+    .avis input:focus, .avis textarea:focus, .avis select:focus {
       border-color: #b9885c;
       outline: none;
       box-shadow: 0 0 6px rgba(185,136,92,0.2);
@@ -183,30 +183,30 @@
   <nav>
     <a href="index.html">Accueil</a> |
     <a href="exposition.html">Boutique</a> |
-    <a href="a-propos.html">À propos</a>
+    <a href="a-propos.html">À propos</a> |
+    <a href="favoris.html" class="menu-fav">Mes Favoris ❤️</a>
   </nav>
 
   <div class="search-bar">
     <input id="searchInput" type="text" placeholder="Rechercher un produit...">
   </div>
 
- <!-- galerie -->
+  <!-- Galerie -->
   <section class="gallery" aria-label="Galerie d'œuvres">
     <!-- Exemples -->
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 1"><h3>Œuvre 1</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 2"><h3>Œuvre 2</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 3"><h3>Œuvre 3</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 4"><h3>Œuvre 4</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 5"><h3>Œuvre 5</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 6"><h3>Œuvre 6</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 7"><h3>Œuvre 7</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 8"><h3>Œuvre 8</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 9"><h3>Œuvre 9</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 10"><h3>Œuvre 10</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 11"><h3>Œuvre 11</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
-    <div class="item"><img src="https://via.placeholder.com/300" alt="oeuvre 12"><h3>Œuvre 12</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a></div>
+    <!-- Ajout des boutons like pour chaque œuvre -->
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 1"><h3>Œuvre 1</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="1">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 2"><h3>Œuvre 2</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="2">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 3"><h3>Œuvre 3</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="3">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 4"><h3>Œuvre 4</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="4">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 5"><h3>Œuvre 5</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="5">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 6"><h3>Œuvre 6</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="6">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 7"><h3>Œuvre 7</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="7">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 8"><h3>Œuvre 8</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="8">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 9"><h3>Œuvre 9</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="9">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 10"><h3>Œuvre 10</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="10">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 11"><h3>Œuvre 11</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="11">❤</a></div>
+    <div class="item"><img src="https://via.placeholder.com/300" alt="œuvre 12"><h3>Œuvre 12</h3><p>Desc...</p><a class="buy-btn" href="#">Acheter</a><a href="#" class="like-btn" data-id="12">❤</a></div>
   </section>
 
   <div class="form-container" role="region" aria-label="Contact et avis clients">
