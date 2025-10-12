@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mes Favoris - L’Atelier StephCrea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Lora', serif;
+      background-color: #f9f7f3;
+      color: #3d3d3d;
+    }
+    header {
+      background-color: #d3a97d;
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    header h1 { font-family: 'Raleway', sans-serif; font-size: 2.5rem; margin: 0; }
+    header p  { font-size: 1.2rem; margin: 0.5rem 0 0; }
+    nav { text-align: center; margin: 1rem 0; }
+    nav a { margin: 0 1rem; text-decoration: none; color: #b9885c; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: auto;
+    }
+    @media (max-width:1100px) { .gallery { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width:800px)  { .gallery { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width:500px)  { .gallery { grid-template-columns: 1fr; } }
+
+    .item {
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+      overflow:hidden;
+      text-align:center;
+      padding-bottom:1rem;
+      transition:transform .2s;
+      position: relative;
+    }
+    .item:hover{ transform:translateY(-5px); }
+    .item img{ width:100%; display:block; border-bottom:1px solid #ddd; }
+    .item h3{ margin:.5rem 0 .2rem; font-family:'Raleway',sans-serif; color:#b9885c; font-weight:700; font-size:1.05rem; }
+    .item p{ font-size:.95rem; margin:.2rem 0 .5rem; }
+    .buy-btn{
+      background:#b9885c; color:#fff; text-decoration:none;
+      padding:.5rem 1.5rem; border-radius:25px;
+      display:inline-block; margin-top:.5rem;
+      font-weight:700; transition:background .3s;
+    }
+    .buy-btn:hover{ background:#9a6b45; }
+
+    /* Like button pour favoris */
+    .like-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size:1.5rem;
+      color:#e74c3c;
+      cursor:pointer;
+      transition: color .2s;
+    }
+
+    #clearAllBtn {
+      display:block;
+      margin: 1rem auto;
+      background:#b9885c; color:#fff;
+      border:none; padding:.8rem 1.5rem;
+      border-radius:25px;
+      font-weight:700; cursor:pointer;
+      font-size:1rem;
+      transition: background .3s;
+    }
+    #clearAllBtn:hover { background:#9a6b45; }
+
+    footer {
+      background-color: #e9e4dc;
+      color: #5c5044;
+      text-align:center;
+      padding:1.5rem;
+      font-size:.9rem;
+    }
+    footer a { color:#b9885c; text-decoration:none; font-weight:700; }
+    footer a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Mes Favoris</h1>
+    <p>Vos œuvres préférées</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Accueil</a> |
+    <a href="exposition.html">Boutique</a> |
+    <a href="a-propos.html">À propos</a>
+  </nav>
+
+  <button id="clearAllBtn">Supprimer tous les favoris</button>
+
+  <section class="gallery" id="favorisGallery" aria-label="Galerie des favoris">
+    <!-- Les favoris seront injectés ici par JS -->
+  </section>
+
+  <footer>
+    © 2025 L’Atelier StephCrea — <a href="index.html">Accueil</a> | <a href="a-propos.html">À propos</a>
+  </footer>
+
+<script>
+  const allOeuvres = [
+    {id: "1", title: "Œuvre 1", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "2", title: "Œuvre 2", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "3", title: "Œuvre 3", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "4", title: "Œuvre 4", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "5", title: "Œuvre 5", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "6", title: "Œuvre 6", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "7", title: "Œuvre 7", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "8", title: "Œuvre 8", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "9", title: "Œuvre 9", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "10", title: "Œuvre 10", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "11", title: "Œuvre 11", desc: "Desc...", img: "https://via.placeholder.com/300"},
+    {id: "12", title: "Œuvre 12", desc: "Desc...", img: "https://via.placeholder.com/300"}
+  ];
+
+  const FAVORIS_KEY = 'atelier_favoris';
+  const gallery = document.getElementById('favorisGallery');
+  const clearBtn = document.getElementById('clearAllBtn');
+
+  function getFavoris() {
+    return JSON.parse(localStorage.getItem(FAVORIS_KEY)) || [];
+  }
+
+  function saveFavoris(favs) {
+    localStorage.setItem(FAVORIS_KEY, JSON.stringify(favs));
+  }
+
+  function removeFavori(id) {
+    let favs = getFavoris();
+    favs = favs.filter(f => f !== id);
+    saveFavoris(favs);
+    renderFavoris();
+  }
+
+  function clearAllFavoris() {
+    localStorage.removeItem(FAVORIS_KEY);
+    renderFavoris();
+  }
+
+  function renderFavoris() {
+    const favorisIds = getFavoris();
+    if(favorisIds.length === 0) {
+      gallery.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Vous n\'avez pas encore de favoris.</p>';
+      return;
+    }
+    gallery.innerHTML = allOeuvres
+      .filter(o => favorisIds.includes(o.id))
+      .map(o => `
+        <div class="item">
+          <img src="${o.img}" alt="${o.title}">
+          <h3>${o.title}</h3>
+          <p>${o.desc}</p>
+          <a class="buy-btn" href="#">Acheter</a>
+          <span class="like-btn" title="Supprimer des favoris" data-id="${o.id}">❤</span>
+        </div>
+      `).join('');
+
+    document.querySelectorAll('.like-btn').forEach(btn => {
+      btn.addEventListener('click', () => removeFavori(btn.dataset.id));
+    });
+  }
+
+  clearBtn.addEventListener('click', clearAllFavoris);
+
+  // Mettre à jour automatiquement si les favoris changent depuis une autre page
+  window.addEventListener('storage', (e) => {
+    if(e.key === FAVORIS_KEY) renderFavoris();
+  });
+
+  renderFavoris();
+</script>
+</body>
+</html>
