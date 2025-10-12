@@ -208,6 +208,7 @@
       <h2 id="avis-title">Avis des clients</h2>
       <form id="avisForm" onsubmit="event.preventDefault(); addLocalAvis();">
         <input type="text" id="nom-avis" placeholder="Votre nom" required>
+                <textarea id="message-avis" rows="4" placeholder="Votre avis..." required></textarea>
         <label for="note-avis" style="display:block;margin:0.5rem 0 0.2rem;">Note :</label>
 <select id="note-avis" required>
   <option value="">Choisir...</option>
@@ -217,7 +218,7 @@
   <option value="4">★★★★☆</option>
   <option value="5">★★★★★</option>
 </select>
-        <textarea id="message-avis" rows="4" placeholder="Votre avis..." required></textarea>
+        
         <button type="submit">Envoyer</button>
       </form>
 
