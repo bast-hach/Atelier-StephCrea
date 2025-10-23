@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L’Atelier StephCrea</title>
+  <title>L'Atelier StephCrea</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* 🌿 Style global */
+    *, *::before, *::after { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Lora', serif;
@@ -14,7 +15,6 @@
       color: #3d3d3d;
     }
 
-    /* --- En-tête --- */
     header {
       background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
@@ -26,7 +26,10 @@
     header::after {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: rgba(0, 0, 0, 0.4);
     }
 
@@ -36,6 +39,8 @@
       z-index: 1;
       font-family: 'Raleway', sans-serif;
       letter-spacing: 2px;
+      margin: 0;
+      font-weight: 700;
     }
 
     header p {
@@ -43,6 +48,7 @@
       font-size: 1.3rem;
       margin-top: 1rem;
       z-index: 1;
+      font-weight: 400;
     }
 
     header a {
@@ -56,19 +62,41 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 30px;
-      transition: background 0.3s;
+      transition: background 0.3s ease;
+      font-family: 'Lora', serif;
     }
 
     header a:hover {
       background-color: #b9885c;
     }
 
-    /* --- Section valeurs --- */
+    nav {
+      text-align: center;
+      padding: 1.5rem 0;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      margin: 0 1.5rem;
+      text-decoration: none;
+      color: #b9885c;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #d3a97d;
+    }
+
     section {
       padding: 4rem 2rem;
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
-      text-align: center;
     }
 
     section h2 {
@@ -76,60 +104,96 @@
       font-size: 2rem;
       color: #b9885c;
       margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 700;
     }
 
     section p {
-      font-size: 1.1rem;
-      line-height: 1.8;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      text-align: justify;
+      margin: 0;
     }
 
-    /* --- Pied de page --- */
     footer {
       background-color: #e9e4dc;
       color: #5c5044;
       text-align: center;
       padding: 1.5rem;
       font-size: 0.9rem;
+      margin-top: 3rem;
     }
 
     footer a {
       color: #b9885c;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
     }
 
     footer a:hover {
       text-decoration: underline;
     }
 
+    @media (max-width: 768px) {
+      header {
+        padding: 6rem 2rem;
+        min-height: auto;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      header p {
+        font-size: 1.1rem;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 0.5rem 0.8rem;
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+
+      section h2 {
+        font-size: 1.6rem;
+      }
+
+      section p {
+        font-size: 1rem;
+        text-align: left;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- 🌸 En-tête -->
   <header>
-    <h1>L’Atelier StephCrea</h1>
+    <h1>L'Atelier StephCrea</h1>
     <p>Créations artisanales sur galets et bois flotté</p>
     <a href="exposition.html">Découvrir les créations</a>
   </header>
 
-  <!-- 🌿 Section valeurs -->
+  <nav>
+    <a href="index.html">Accueil</a> |
+    <a href="exposition.html">Boutique</a> |
+    <a href="a-propos.html">À propos</a> |
+    <a href="favoris.html" class="menu-fav">Mes Favoris ❤️</a>
+  </nav>
+
   <section>
     <h2>La nature, la main et le cœur</h2>
     <p>
-      Chaque pièce de l’Atelier StephCrea est façonnée avec patience et amour.  
-      Du galet ramassé sur la plage au bois flotté sculpté par la mer,  
-      chaque matériau raconte une histoire.  
-      L’art de la nature se mêle à la sensibilité humaine pour donner vie à des œuvres uniques,  
-      pleines de douceur et d’énergie.
+      Chaque pièce de l'Atelier StephCrea est façonnée avec patience et amour. Du galet ramassé sur la plage au bois flotté sculpté par la mer, chaque matériau raconte une histoire. L'art de la nature se mêle à la sensibilité humaine pour donner vie à des œuvres uniques, pleines de douceur et d'énergie.
     </p>
   </section>
 
-  <!-- 🌾 Pied de page -->
   <footer>
-    © 2025 L’Atelier StephCrea — 
-    <a href="a-propos.html">À propos</a> | 
-    <a href="exposition.html">Boutique</a>
+    © 2025 L'Atelier StephCrea — 
+    <a href="index.html">Accueil</a> | 
+    <a href="a-propos.html">À propos</a>
   </footer>
 
 </body>
