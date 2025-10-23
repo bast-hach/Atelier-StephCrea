@@ -22,173 +22,44 @@
       padding: 3rem 2rem;
     }
 
-    header h1 {
-      font-family: 'Raleway', sans-serif;
-      font-size: 2.5rem;
-      margin: 0;
-    }
+    header h1 { font-family: 'Raleway', sans-serif; font-size: 2.5rem; margin: 0; }
+    header p { font-size: 1.2rem; margin: 0.5rem 0 0; }
 
-    header p {
-      font-size: 1.2rem;
-      margin: 0.5rem 0 0;
-    }
+    nav { text-align: center; margin: 1rem 0; }
+    nav a { margin: 0 1rem; text-decoration: none; color: #b9885c; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
 
-    nav {
-      text-align: center;
-      margin: 1rem 0;
-    }
+    .controls { text-align: center; padding: 2rem 1rem; max-width: 1400px; margin: auto; }
+    .controls h2 { font-family: 'Raleway', sans-serif; font-size: 1.8rem; color: #b9885c; margin: 0 0 1.5rem 0; }
 
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #b9885c;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .controls {
-      text-align: center;
-      padding: 2rem 1rem;
-      max-width: 1400px;
-      margin: auto;
-    }
-
-    #clearAllBtn {
-      background-color: #b9885c;
-      color: white;
-      border: none;
-      padding: 0.85rem 2rem;
-      border-radius: 25px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 1rem;
-      font-family: 'Lora', serif;
-      transition: background 0.3s ease;
-    }
-
-    #clearAllBtn:hover {
-      background-color: #9a6b45;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 1400px;
-      margin: auto;
-    }
+    .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: 2rem; max-width: 1400px; margin: auto; }
 
     @media (max-width: 1100px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 800px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 500px) { .gallery { grid-template-columns: 1fr; } }
 
-    .item {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      text-align: center;
-      padding-bottom: 1rem;
-      transition: transform 0.2s ease;
-      position: relative;
-    }
+    .item { background: white; border-radius: 10px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); overflow: hidden; text-align: center; padding-bottom: 1rem; transition: transform 0.2s ease; }
+    .item:hover { transform: translateY(-5px); }
+    .item img { width: 100%; display: block; border-bottom: 1px solid #ddd; aspect-ratio: 1; object-fit: cover; }
+    .item h3 { margin: 0.5rem 0 0.2rem; font-family: 'Raleway', sans-serif; color: #b9885c; font-weight: 700; font-size: 1.05rem; }
+    .item p { font-size: 0.95rem; margin: 0.2rem 0 0.5rem; padding: 0 0.5rem; }
 
-    .item:hover {
-      transform: translateY(-5px);
-    }
+    .item-actions { display: flex; justify-content: center; align-items: center; gap: 1rem; }
 
-    .item img {
-      width: 100%;
-      display: block;
-      border-bottom: 1px solid #ddd;
-      aspect-ratio: 1;
-      object-fit: cover;
-    }
+    .buy-btn { background: #b9885c; color: white; text-decoration: none; padding: 0.5rem 1.5rem; border-radius: 25px; display: inline-block; font-weight: 700; transition: background 0.3s ease; border: none; cursor: pointer; font-family: 'Lora', serif; }
+    .buy-btn:hover { background: #9a6b45; }
 
-    .item h3 {
-      margin: 0.5rem 0 0.2rem;
-      font-family: 'Raleway', sans-serif;
-      color: #b9885c;
-      font-weight: 700;
-      font-size: 1.05rem;
-    }
+    .like-btn { display: inline-block; font-size: 1.3rem; color: #e74c3c; cursor: pointer; transition: color 0.2s ease; border: none; background: none; padding: 0; }
+    .like-btn:hover { color: #c0392b; }
 
-    .item p {
-      font-size: 0.95rem;
-      margin: 0.2rem 0 0.5rem;
-      padding: 0 0.5rem;
-    }
+    .empty-message { text-align: center; grid-column: 1 / -1; padding: 3rem 1rem; color: #999; font-size: 1.1rem; }
 
-    .item-actions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-    }
+    #clearAllBtn { background-color: #b9885c; color: white; border: none; padding: 0.85rem 2rem; border-radius: 25px; font-weight: 700; cursor: pointer; font-size: 1rem; font-family: 'Lora', serif; transition: background 0.3s ease; }
+    #clearAllBtn:hover { background-color: #9a6b45; }
 
-    .buy-btn {
-      background: #b9885c;
-      color: white;
-      text-decoration: none;
-      padding: 0.5rem 1.5rem;
-      border-radius: 25px;
-      display: inline-block;
-      font-weight: 700;
-      transition: background 0.3s ease;
-      border: none;
-      cursor: pointer;
-      font-family: 'Lora', serif;
-    }
-
-    .buy-btn:hover {
-      background: #9a6b45;
-    }
-
-    .like-btn {
-      display: inline-block;
-      font-size: 1.3rem;
-      color: #e74c3c;
-      cursor: pointer;
-      transition: color 0.2s ease;
-      border: none;
-      background: none;
-      padding: 0;
-    }
-
-    .like-btn:hover {
-      color: #c0392b;
-    }
-
-    .empty-message {
-      text-align: center;
-      grid-column: 1 / -1;
-      padding: 3rem 1rem;
-      color: #999;
-      font-size: 1.1rem;
-    }
-
-    footer {
-      background-color: #e9e4dc;
-      color: #5c5044;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.9rem;
-      margin-top: 3rem;
-    }
-
-    footer a {
-      color: #b9885c;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
+    footer { background-color: #e9e4dc; color: #5c5044; text-align: center; padding: 1.5rem; font-size: 0.9rem; margin-top: 3rem; }
+    footer a { color: #b9885c; text-decoration: none; font-weight: 700; }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -206,12 +77,11 @@
   </nav>
 
   <div class="controls">
-    <h2 style="font-family: 'Raleway', sans-serif; font-size: 1.8rem; color: #b9885c; margin: 0 0 1.5rem 0;">Mes Favoris</h2>
+    <h2>Mes Favoris</h2>
     <button id="clearAllBtn">Supprimer tous les favoris</button>
   </div>
 
   <section class="gallery" id="favorisGallery" aria-label="Galerie des favoris">
-    <!-- Les favoris seront injectés ici par JS -->
   </section>
 
   <footer>
@@ -221,7 +91,7 @@
   </footer>
 
   <script>
-    const allOeuvres = [
+    var allOeuvres = [
       { id: "1", title: "Galet cactus", desc: "Petit galet peint, décor nature.", img: "https://via.placeholder.com/300" },
       { id: "2", title: "Galet Saint-Valentin", desc: "Peinture romantique sur galet.", img: "https://via.placeholder.com/300" },
       { id: "3", title: "Décor de Noël", desc: "Galet décoré à la main pour les fêtes.", img: "https://via.placeholder.com/300" },
@@ -236,68 +106,75 @@
       { id: "12", title: "Création sur demande", desc: "Œuvre personnalisée selon vos envies.", img: "https://via.placeholder.com/300" }
     ];
 
-    const FAVORIS_KEY = 'atelier_favoris';
-    const gallery = document.getElementById('favorisGallery');
-    const clearBtn = document.getElementById('clearAllBtn');
+    var gallery = document.getElementById('favorisGallery');
+    var clearBtn = document.getElementById('clearAllBtn');
 
     function getFavoris() {
-      return JSON.parse(localStorage.getItem(FAVORIS_KEY)) || [];
+      try {
+        return JSON.parse(localStorage.getItem('atelier_favoris')) || [];
+      } catch(e) {
+        return [];
+      }
     }
 
     function saveFavoris(favs) {
-      localStorage.setItem(FAVORIS_KEY, JSON.stringify(favs));
+      try {
+        localStorage.setItem('atelier_favoris', JSON.stringify(favs));
+      } catch(e) {
+        console.log('localStorage non disponible');
+      }
     }
 
     function removeFavori(id) {
-      let favs = getFavoris();
-      favs = favs.filter(f => f !== id);
+      var favs = getFavoris();
+      favs = favs.filter(function(f) { return f !== id; });
       saveFavoris(favs);
       renderFavoris();
     }
 
     function clearAllFavoris() {
       if (confirm('Êtes-vous sûr de vouloir supprimer tous vos favoris ?')) {
-        localStorage.removeItem(FAVORIS_KEY);
+        try {
+          localStorage.removeItem('atelier_favoris');
+        } catch(e) {}
         renderFavoris();
       }
     }
 
     function escapeHtml(s) {
-      const div = document.createElement('div');
+      var div = document.createElement('div');
       div.textContent = s;
       return div.innerHTML;
     }
 
     function renderFavoris() {
-      const favorisIds = getFavoris();
+      var favorisIds = getFavoris();
       if (favorisIds.length === 0) {
         gallery.innerHTML = '<div class="empty-message">Vous n\'avez pas encore de favoris.<br><a href="exposition.html" style="color: #b9885c; text-decoration: underline;">Retour à la boutique</a></div>';
         return;
       }
 
-      gallery.innerHTML = allOeuvres
-        .filter(o => favorisIds.includes(o.id))
-        .map(o => `
-          <div class="item">
-            <img src="${o.img}" alt="${escapeHtml(o.title)}">
-            <h3>${escapeHtml(o.title)}</h3>
-            <p>${escapeHtml(o.desc)}</p>
-            <div class="item-actions">
-              <button class="buy-btn">Acheter</button>
-              <button class="like-btn" data-id="${o.id}" aria-label="Supprimer des favoris">❤</button>
-            </div>
-          </div>
-        `).join('');
+      var html = '';
+      for (var i = 0; i < allOeuvres.length; i++) {
+        var o = allOeuvres[i];
+        if (favorisIds.includes(o.id)) {
+          html += '<div class="item"><img src="' + o.img + '" alt="' + escapeHtml(o.title) + '"><h3>' + escapeHtml(o.title) + '</h3><p>' + escapeHtml(o.desc) + '</p><div class="item-actions"><button class="buy-btn">Acheter</button><button class="like-btn" data-id="' + o.id + '">❤</button></div></div>';
+        }
+      }
+      gallery.innerHTML = html;
 
-      document.querySelectorAll('.like-btn').forEach(btn => {
-        btn.addEventListener('click', () => removeFavori(btn.dataset.id));
-      });
+      var likeBtns = document.querySelectorAll('.like-btn');
+      for (var i = 0; i < likeBtns.length; i++) {
+        likeBtns[i].addEventListener('click', function() {
+          removeFavori(this.dataset.id);
+        });
+      }
     }
 
     clearBtn.addEventListener('click', clearAllFavoris);
 
-    window.addEventListener('storage', (e) => {
-      if (e.key === FAVORIS_KEY) renderFavoris();
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'atelier_favoris') renderFavoris();
     });
 
     renderFavoris();
