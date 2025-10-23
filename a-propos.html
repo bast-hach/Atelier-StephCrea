@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>À propos - L’Atelier StephCrea</title>
+  <title>À propos - L'Atelier StephCrea</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Lora', serif;
@@ -17,7 +19,7 @@
       background-color: #d3a97d;
       color: white;
       text-align: center;
-      padding: 4rem 2rem;
+      padding: 3rem 2rem;
     }
 
     header h1 {
@@ -48,30 +50,77 @@
     }
 
     section {
-      padding: 4rem 2rem;
-      max-width: 900px;
+      padding: 3rem 2rem;
+      max-width: 1000px;
       margin: auto;
-      text-align: center;
     }
 
     section h2 {
       font-family: 'Raleway', sans-serif;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #b9885c;
       margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 700;
     }
 
     section p {
-      font-size: 1.1rem;
+      font-size: 1rem;
       line-height: 1.8;
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .bio-container {
+      background-color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       margin-bottom: 2rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
     }
 
     .bio-img {
-      max-width: 300px;
+      max-width: 280px;
       width: 100%;
       border-radius: 10px;
-      margin-bottom: 2rem;
+      flex-shrink: 0;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .bio-text {
+      flex: 1;
+    }
+
+    .book-section {
+      background-color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: #b9885c;
+      color: white;
+      padding: 0.85rem 2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: 'Lora', serif;
+      margin-top: 1rem;
+    }
+
+    .cta-btn:hover {
+      background-color: #9a6b45;
     }
 
     footer {
@@ -80,16 +129,27 @@
       text-align: center;
       padding: 1.5rem;
       font-size: 0.9rem;
+      margin-top: 3rem;
     }
 
     footer a {
       color: #b9885c;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
     }
 
     footer a:hover {
       text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+      section { padding: 2rem 1rem; }
+      .bio-container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      section p { font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -97,50 +157,47 @@
 
   <!-- Header -->
   <header>
-    <h1>À propos de L’Atelier StephCrea</h1>
-    <p>Mon univers, mes créations et ma passion</p>
+    <h1>L'Atelier StephCrea</h1>
+    <p>Galerie et boutique artisanale</p>
   </header>
 
   <!-- Navigation -->
   <nav>
     <a href="index.html">Accueil</a> |
-    <a href="exposition.html">Boutique</a>
+    <a href="exposition.html">Boutique</a> |
+    <a href="a-propos.html">À propos</a> |
+    <a href="favoris.html" class="menu-fav">Mes Favoris ❤️</a>
   </nav>
 
   <!-- Biographie -->
-  <section>
-    <h2>Bonjour, je suis l’artiste derrière mes créations</h2>
-    <img src="https://via.placeholder.com/300" alt="Portrait" class="bio-img">
-    <p>
-      Depuis que je suis enfant, je suis fascinée par la nature et les formes qu’elle offre.  
-      Chaque galet, chaque morceau de bois flotté que je trouve raconte une histoire, et j’aime lui donner vie en le transformant en une œuvre unique.  
-      Pour moi, créer, c’est écouter la matière et laisser parler mon cœur.
-    </p>
-    <p>
-      J’aime partager ma passion avec les autres et montrer qu’avec patience et imagination, même les matériaux les plus simples peuvent devenir quelque chose de beau.  
-      Mes créations reflètent ma sensibilité, mon amour du détail et ma joie de travailler main dans la main avec la nature.
-    </p>
-    <p>
-      Mon objectif est que chaque personne qui possède une de mes œuvres ressente cette énergie et cette authenticité.  
-      C’est un peu de mon univers que je partage à travers chaque pièce.
-    </p>
+  <section class="bio-container">
+    <img src="https://via.placeholder.com/300" alt="Portrait de l'artiste" class="bio-img">
+    <div class="bio-text">
+      <h2 style="text-align: left; margin-top: 0;">Bonjour, je suis l'artiste derrière mes créations</h2>
+      <p>
+        Depuis que je suis enfant, je suis fascinée par la nature et les formes qu'elle offre. Chaque galet, chaque morceau de bois flotté que je trouve raconte une histoire, et j'aime lui donner vie en le transformant en une œuvre unique. Pour moi, créer, c'est écouter la matière et laisser parler mon cœur.
+      </p>
+      <p>
+        J'aime partager ma passion avec les autres et montrer qu'avec patience et imagination, même les matériaux les plus simples peuvent devenir quelque chose de beau. Mes créations reflètent ma sensibilité, mon amour du détail et ma joie de travailler main dans la main avec la nature.
+      </p>
+      <p style="margin-bottom: 0;">
+        Mon objectif est que chaque personne qui possède une de mes œuvres ressente cette énergie et cette authenticité. C'est un peu de mon univers que je partage à travers chaque pièce.
+      </p>
+    </div>
   </section>
 
   <!-- Livre -->
-  <section>
-    <h2>Mon livre : "C’est notre secret"</h2>
+  <section class="book-section">
+    <h2>Mon livre : "C'est notre secret"</h2>
     <p>
-     J’ai écrit <strong>"C’est notre secret"</strong>, mon autobiographie, pour partager mon parcours,  
-    mon enfance et les épreuves difficiles que j’ai traversées, y compris les maltraitances que j’ai subies.  
-    Ce livre est pour moi un moyen de témoigner, de transmettre ma force et mon espoir,  
-    et de montrer que l’on peut surmonter les blessures du passé pour créer quelque chose de beau et de vrai.
+      J'ai écrit <strong>"C'est notre secret"</strong>, mon autobiographie, pour partager mon parcours, mon enfance et les épreuves difficiles que j'ai traversées, y compris les maltraitances que j'ai subies. Ce livre est pour moi un moyen de témoigner, de transmettre ma force et mon espoir, et de montrer que l'on peut surmonter les blessures du passé pour créer quelque chose de beau et de vrai.
     </p>
-    <a href="https://www.amazon.fr/dp/LINK_DE_TON_LIVRE" target="_blank" style="display:inline-block; background-color:#b9885c; color:white; padding:0.8rem 2rem; border-radius:25px; text-decoration:none; font-weight:bold; transition:background 0.3s;">Acheter sur Amazon</a>
+    <a href="https://www.amazon.fr/dp/LINK_DE_TON_LIVRE" target="_blank" class="cta-btn">Acheter sur Amazon</a>
   </section>
 
   <!-- Footer -->
   <footer>
-    © 2025 L’Atelier StephCrea — 
+    © 2025 L'Atelier StephCrea — 
     <a href="index.html">Accueil</a> | 
     <a href="exposition.html">Boutique</a>
   </footer>
