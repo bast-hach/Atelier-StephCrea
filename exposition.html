@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Exposition - L’Atelier StephCrea</title>
+  <title>Exposition - L'Atelier StephCrea</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -29,6 +29,76 @@
     nav a { margin: 0 1rem; text-decoration: none; color: #b9885c; font-weight: bold; }
     nav a:hover { text-decoration: underline; }
 
+    /* Barre de recherche */
+    .search-bar { text-align: center; margin: 2rem 0 1rem; }
+    .search-bar input {
+      width: 320px;
+      max-width: 90%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-family: 'Lora', serif;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .search-bar input:focus {
+      border-color: #b9885c;
+      outline: none;
+      box-shadow: 0 0 6px rgba(185, 136, 92, 0.25);
+    }
+
+    /* Filtres */
+    .filters-container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .filter-section {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .filter-section h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.4rem;
+      color: #b9885c;
+      margin: 0 0 1.2rem 0;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .filter-btn {
+      background-color: #f0ede8;
+      color: #3d3d3d;
+      border: 2px solid #ddd;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      margin: 0.4rem;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .filter-btn:hover {
+      border-color: #b9885c;
+      background-color: #e8e4dc;
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background-color: #b9885c;
+      color: white;
+      border-color: #b9885c;
+    }
+
     /* Galerie */
     .gallery-grid {
       display: grid;
@@ -38,58 +108,84 @@
       max-width: 1400px;
       margin: auto;
     }
-    @media (max-width:1100px) { .gallery-grid { grid-template-columns: repeat(3,1fr); } }
-    @media (max-width:800px)  { .gallery-grid { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width:500px)  { .gallery-grid { grid-template-columns: 1fr; } }
+
+    @media (max-width: 1100px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 800px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .gallery-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) {
+      .filters-container { grid-template-columns: 1fr; gap: 2rem; }
+    }
 
     .item {
-      background:#fff;
-      border-radius:10px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.1);
-      overflow:hidden;
-      text-align:center;
-      padding-bottom:1rem;
-      transition:transform .2s;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      padding-bottom: 1rem;
+      transition: transform 0.2s ease;
     }
-    .item:hover{ transform:translateY(-5px); }
-    .item img{ width:100%; display:block; border-bottom:1px solid #ddd; }
-    .item h3{ margin:.5rem 0 .2rem; font-family:'Raleway',sans-serif; color:#b9885c; font-weight:700; font-size:1.05rem; }
-    .item p{ font-size:.95rem; margin:.2rem 0 .5rem; }
-    .buy-btn{
-      background:#b9885c; color:#fff; text-decoration:none;
-      padding:.5rem 1.5rem; border-radius:25px;
-      display:inline-block; margin-top:.5rem;
-      font-weight:700; transition:background .3s;
-    }
-    .buy-btn:hover{ background:#9a6b45; }
 
-    /* Like button */
+    .item:hover { transform: translateY(-5px); }
+
+    .item img {
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid #ddd;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .item h3 {
+      margin: 0.5rem 0 0.2rem;
+      font-family: 'Raleway', sans-serif;
+      color: #b9885c;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .item p {
+      font-size: 0.95rem;
+      margin: 0.2rem 0 0.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .item-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .buy-btn {
+      background: #b9885c;
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      display: inline-block;
+      font-weight: 700;
+      transition: background 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-family: 'Lora', serif;
+    }
+
+    .buy-btn:hover { background: #9a6b45; }
+
     .like-btn {
-      display:inline-block;
-      margin-top:.3rem;
-      font-size:1.3rem;
-      color:#ccc;
-      cursor:pointer;
-      transition: color .2s;
+      display: inline-block;
+      font-size: 1.3rem;
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      border: none;
+      background: none;
+      padding: 0;
     }
-    .like-btn.liked { color:#e74c3c; }
 
-    /* Barre de recherche */
-    .search-bar { text-align:center; margin:2rem 0 1rem; }
-    .search-bar input {
-      width: 320px;
-      max-width: 90%;
-      padding:.8rem 1rem;
-      border:1px solid #ccc;
-      border-radius:25px;
-      font-size:1rem;
-      font-family:'Lora',serif;
-      transition: box-shadow .2s, border-color .2s;
-    }
-    .search-bar input:focus {
-      border-color:#b9885c; outline:none;
-      box-shadow:0 0 6px rgba(185,136,92,0.25);
-    }
+    .like-btn:hover { color: #e74c3c; }
+    .like-btn.liked { color: #e74c3c; }
 
     /* FORM CONTAINER */
     .form-container {
@@ -108,7 +204,7 @@
       background-color: #f7f4ef;
       border-radius: 12px;
       padding: 2rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       flex: 0 0 46%;
       min-width: 300px;
       font-family: 'Lora', serif;
@@ -118,7 +214,7 @@
       font-family: 'Raleway', sans-serif;
       font-size: 1.6rem;
       color: #b9885c;
-      text-align:center;
+      text-align: center;
       margin: 0 0 1rem 0;
       font-weight: 700;
     }
@@ -126,35 +222,36 @@
     .contact input, .contact textarea,
     .avis input, .avis textarea, .avis select {
       width: 100%;
-      padding: .75rem 1rem;
+      padding: 0.75rem 1rem;
       border-radius: 10px;
       border: 1px solid #ccc;
       font-size: 1rem;
-      margin-bottom: .9rem;
+      margin-bottom: 0.9rem;
       font-family: 'Lora', serif;
-      transition: border-color .2s, box-shadow .2s;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .contact input:focus, .contact textarea:focus,
     .avis input:focus, .avis textarea:focus, .avis select:focus {
       border-color: #b9885c;
       outline: none;
-      box-shadow: 0 0 6px rgba(185,136,92,0.2);
+      box-shadow: 0 0 6px rgba(185, 136, 92, 0.2);
     }
 
     .contact button, .avis button {
       display: block;
       width: 100%;
       background-color: #b9885c;
-      color: #fff;
+      color: white;
       border: none;
-      padding: .85rem;
+      padding: 0.85rem;
       border-radius: 25px;
       font-weight: 700;
       cursor: pointer;
       font-size: 1rem;
-      transition: background .2s;
+      transition: background 0.2s ease;
     }
+
     .contact button:hover, .avis button:hover { background-color: #9a6b45; }
 
     @media (max-width: 900px) {
@@ -165,36 +262,30 @@
     footer {
       background-color: #e9e4dc;
       color: #5c5044;
-      text-align:center;
-      padding:1.5rem;
-      font-size:.9rem;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
     }
-    footer a { color:#b9885c; text-decoration:none; font-weight:700; }
-    footer a:hover { text-decoration:underline; }
 
-    .filter-btn {
-  background-color: #b9885c;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 25px;
-  margin: 0 0.3rem;
-  cursor: pointer;
-  font-family: 'Raleway', sans-serif;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
+    footer a { color: #b9885c; text-decoration: none; font-weight: 700; }
+    footer a:hover { text-decoration: underline; }
 
-.filter-btn:hover,
-.filter-btn.active {
-  background-color: #9a6b45;
-}
+    .avis-item {
+      background: white;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .avis-item strong { color: #b9885c; }
+    .avis-item .stars { color: #d3a97d; margin: 0.3rem 0; }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>L’Atelier StephCrea</h1>
+    <h1>L'Atelier StephCrea</h1>
     <p>Galerie et boutique artisanale</p>
   </header>
 
@@ -208,133 +299,163 @@
   <div class="search-bar">
     <input id="searchInput" type="text" placeholder="Rechercher un produit...">
   </div>
-  
-<!-- Filtres de catégories -->
-<div class="category-filter" style="text-align:center; margin-bottom: 2rem;">
-  <button class="filter-btn active" data-category="all">Tout</button>
 
-  <!-- Galets peints -->
-  <button class="filter-btn" data-category="galets-nature">Nature & Paysages</button>
-  <button class="filter-btn" data-category="galets-fetes">Fêtes & Saisons</button>
-  <button class="filter-btn" data-category="galets-evenements">Événements de vie</button>
-  <button class="filter-btn" data-category="galets-portraits">Portraits & Visages</button>
-  <button class="filter-btn" data-category="galets-commande">Sur commande</button>
+  <!-- Filtres de catégories -->
+  <div class="filters-container" role="region" aria-label="Filtres de produits">
+    <section class="filter-section">
+      <h3>🪨 Galets peints</h3>
+      <div style="text-align: center;">
+        <button class="filter-btn active" data-category="all-galets">Tous</button>
+        <button class="filter-btn" data-category="galets-nature">Nature & Paysages</button>
+        <button class="filter-btn" data-category="galets-fetes">Fêtes & Saisons</button>
+        <button class="filter-btn" data-category="galets-evenements">Événements de vie</button>
+        <button class="filter-btn" data-category="galets-portraits">Portraits & Visages</button>
+        <button class="filter-btn" data-category="galets-commande">Sur commande</button>
+      </div>
+    </section>
 
-  <!-- Cadres décoratifs -->
-  <button class="filter-btn" data-category="cadres-famille">Famille & Généalogie</button>
-  <button class="filter-btn" data-category="cadres-amour">Amour & Couples</button>
-  <button class="filter-btn" data-category="cadres-commande">Sur commande</button>
-</div>
-
-  
-<!-- ===== Galerie ===== -->
-<section class="gallery" aria-label="Galerie d'œuvres">
-
-  <!-- 🖼️ Galerie des œuvres -->
-<div class="gallery-grid">
-  <!-- Galets peints -->
-  <div class="item" data-category="galets-nature">
-    <img src="https://via.placeholder.com/300" alt="Galet cactus">
-    <h3>Galet cactus</h3>
-    <p>Petit galet peint, décor nature.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="1">❤</a>
+    <section class="filter-section">
+      <h3>🖼️ Cadres décoratifs</h3>
+      <div style="text-align: center;">
+        <button class="filter-btn" data-category="all-cadres">Tous</button>
+        <button class="filter-btn" data-category="cadres-famille">Famille & Généalogie</button>
+        <button class="filter-btn" data-category="cadres-amour">Amour & Couples</button>
+        <button class="filter-btn" data-category="cadres-commande">Sur commande</button>
+      </div>
+    </section>
   </div>
 
-  <div class="item" data-category="galets-fetes">
-    <img src="https://via.placeholder.com/300" alt="Galet Saint-Valentin">
-    <h3>Galet Saint-Valentin</h3>
-    <p>Peinture romantique sur galet.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="2">❤</a>
-  </div>
+  <!-- Galerie -->
+  <section class="gallery" aria-label="Galerie d'œuvres">
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Galets peints -->
+      <div class="item" data-category="galets-nature">
+        <img src="https://via.placeholder.com/300" alt="Galet cactus">
+        <h3>Galet cactus</h3>
+        <p>Petit galet peint, décor nature.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="1" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
-  <div class="item" data-category="galets-fetes">
-    <img src="https://via.placeholder.com/300" alt="Décor Noël">
-    <h3>Décor de Noël</h3>
-    <p>Galet décoré à la main pour les fêtes.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="3">❤</a>
-  </div>
+      <div class="item" data-category="galets-fetes">
+        <img src="https://via.placeholder.com/300" alt="Galet Saint-Valentin">
+        <h3>Galet Saint-Valentin</h3>
+        <p>Peinture romantique sur galet.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="2" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
-  <div class="item" data-category="cadres-famille">
-    <img src="https://via.placeholder.com/300" alt="Cadre famille">
-    <h3>Cadre Famille</h3>
-    <p>Cadre personnalisé arbre de vie.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="4">❤</a>
-  </div>
+      <div class="item" data-category="galets-fetes">
+        <img src="https://via.placeholder.com/300" alt="Décor Noël">
+        <h3>Décor de Noël</h3>
+        <p>Galet décoré à la main pour les fêtes.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="3" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
-  <div class="item" data-category="cadres-amour">
-    <img src="https://via.placeholder.com/300" alt="Cadre amoureux">
-    <h3>Cadre Amoureux</h3>
-    <p>Création romantique sur mesure.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="5">❤</a>
-  </div>
+      <div class="item" data-category="cadres-famille">
+        <img src="https://via.placeholder.com/300" alt="Cadre famille">
+        <h3>Cadre Famille</h3>
+        <p>Cadre personnalisé arbre de vie.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="4" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
-  <div class="item" data-category="galets-nature">
-    <img src="https://via.placeholder.com/300" alt="Paysage">
-    <h3>Galet Paysage</h3>
-    <p>Peinture de nature sur galet poli.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="6">❤</a>
-  </div>
+      <div class="item" data-category="cadres-amour">
+        <img src="https://via.placeholder.com/300" alt="Cadre amoureux">
+        <h3>Cadre Amoureux</h3>
+        <p>Création romantique sur mesure.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="5" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
-  <div class="item" data-category="galets-evenements">
-    <img src="https://via.placeholder.com/300" alt="Galet Mariage">
-    <h3>Galet Mariage</h3>
-    <p>Souvenir unique peint à la main.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="7">❤</a>
-  </div>
+      <div class="item" data-category="galets-nature">
+        <img src="https://via.placeholder.com/300" alt="Paysage">
+        <h3>Galet Paysage</h3>
+        <p>Peinture de nature sur galet poli.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="6" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
-  <div class="item" data-category="galets-evenements">
-    <img src="https://via.placeholder.com/300" alt="Galet Naissance">
-    <h3>Galet Naissance</h3>
-    <p>Petit cadeau de bienvenue personnalisé.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="8">❤</a>
-  </div>
+      <div class="item" data-category="galets-evenements">
+        <img src="https://via.placeholder.com/300" alt="Galet Mariage">
+        <h3>Galet Mariage</h3>
+        <p>Souvenir unique peint à la main.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="7" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
-  <div class="item" data-category="cadres-famille">
-    <img src="https://via.placeholder.com/300" alt="Cadre Arbre Généalogique">
-    <h3>Cadre Arbre Généalogique</h3>
-    <p>Arbre familial artistique sur mesure.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="9">❤</a>
-  </div>
+      <div class="item" data-category="galets-evenements">
+        <img src="https://via.placeholder.com/300" alt="Galet Naissance">
+        <h3>Galet Naissance</h3>
+        <p>Petit cadeau de bienvenue personnalisé.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="8" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
-  <div class="item" data-category="galets-portraits">
-    <img src="https://via.placeholder.com/300" alt="Visage abstrait">
-    <h3>Visage abstrait</h3>
-    <p>Portrait expressif sur galet.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="10">❤</a>
-  </div>
+      <div class="item" data-category="cadres-famille">
+        <img src="https://via.placeholder.com/300" alt="Cadre Arbre Généalogique">
+        <h3>Cadre Arbre Généalogique</h3>
+        <p>Arbre familial artistique sur mesure.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="9" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
-  <div class="item" data-category="galets-fetes">
-    <img src="https://via.placeholder.com/300" alt="Décor Hiver">
-    <h3>Décor Hiver</h3>
-    <p>Galet peint dans une ambiance hivernale.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="11">❤</a>
-  </div>
+      <div class="item" data-category="galets-portraits">
+        <img src="https://via.placeholder.com/300" alt="Visage abstrait">
+        <h3>Visage abstrait</h3>
+        <p>Portrait expressif sur galet.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="10" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
-  <div class="item" data-category="galets-commande">
-    <img src="https://via.placeholder.com/300" alt="Autre création">
-    <h3>Création sur demande</h3>
-    <p>Œuvre personnalisée selon vos envies.</p>
-    <a class="buy-btn" href="#">Acheter</a>
-    <a href="#" class="like-btn" data-id="12">❤</a>
-  </div>
-</div>
-</section>
+      <div class="item" data-category="galets-fetes">
+        <img src="https://via.placeholder.com/300" alt="Décor Hiver">
+        <h3>Décor Hiver</h3>
+        <p>Galet peint dans une ambiance hivernale.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="11" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
 
+      <div class="item" data-category="galets-commande">
+        <img src="https://via.placeholder.com/300" alt="Autre création">
+        <h3>Création sur demande</h3>
+        <p>Œuvre personnalisée selon vos envies.</p>
+        <div class="item-actions">
+          <button class="buy-btn">Acheter</button>
+          <button class="like-btn" data-id="12" aria-label="Ajouter aux favoris">❤</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulaires -->
   <div class="form-container" role="region" aria-label="Contact et avis clients">
     <section class="contact" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact / Collaboration</h2>
-      <form onsubmit="event.preventDefault(); alert('Formulaire contact envoyé (placeholder)');">
+      <form onsubmit="event.preventDefault(); alert('Formulaire contact envoyé (placeholder');">
         <input type="text" name="nom-contact" placeholder="Votre nom" required>
         <input type="email" name="email-contact" placeholder="Votre email" required>
         <textarea name="msg-contact" rows="5" placeholder="Votre message..." required></textarea>
@@ -344,7 +465,7 @@
 
     <section class="avis" aria-labelledby="avis-title">
       <h2 id="avis-title">Avis des clients</h2>
-      <form id="avisForm" onsubmit="event.preventDefault(); addLocalAvis();">
+      <form id="avisForm" onsubmit="event.preventDefault(); addAvis();">
         <input type="text" id="nom-avis" placeholder="Votre nom" required>
         <textarea id="message-avis" rows="4" placeholder="Votre avis..." required></textarea>
         <label for="note-avis">Note :</label>
@@ -358,114 +479,118 @@
         </select>
         <button type="submit">Envoyer</button>
       </form>
-      <div id="avisContainer" aria-live="polite" style="margin-top:1rem;"></div>
+      <div id="avisContainer" aria-live="polite" aria-label="Liste des avis"></div>
     </section>
   </div>
 
   <footer>
-    © 2025 L’Atelier StephCrea — <a href="index.html">Accueil</a> | <a href="a-propos.html">À propos</a>
+    © 2025 L'Atelier StephCrea — <a href="index.html">Accueil</a> | <a href="a-propos.html">À propos</a>
   </footer>
 
   <script>
-    /* Recherche */
+    // Cache DOM
     const searchInput = document.getElementById('searchInput');
-    const items = document.querySelectorAll('.item');
-    searchInput.addEventListener('input', function() {
-      const searchTerm = searchInput.value.toLowerCase();
-      items.forEach(item => {
-        const title = item.querySelector('h3').textContent.toLowerCase();
-        const desc  = item.querySelector('p').textContent.toLowerCase();
-        item.style.display = (title.includes(searchTerm) || desc.includes(searchTerm)) ? '' : 'none';
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.item');
+    const likeBtns = document.querySelectorAll('.like-btn');
+    const avisForm = document.getElementById('avisForm');
+    const avisContainer = document.getElementById('avisContainer');
+
+    let currentCategory = 'all-galets';
+    let avisData = [];
+
+    // Filtres améliorés avec délégation d'événements
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.closest('.filter-section');
+        const sectionBtns = section.querySelectorAll('.filter-btn');
+        
+        // Désactiver les boutons de la même section
+        sectionBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        currentCategory = btn.dataset.category;
+        filterGallery();
       });
     });
 
-    /* Gestion des avis */
-    const avisContainer = document.getElementById('avisContainer');
-    const AVIS_KEY = 'atelier_avis_demo';
-    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    // Recherche optimisée
+    searchInput.addEventListener('input', filterGallery);
 
-    function getLocalAvis(){ try { return JSON.parse(localStorage.getItem(AVIS_KEY)) || []; } catch(e){ return []; } }
-    function saveLocalAvis(a){ const list = getLocalAvis(); list.unshift(a); localStorage.setItem(AVIS_KEY, JSON.stringify(list)); renderAvis(list); }
+    function filterGallery() {
+      const searchTerm = searchInput.value.toLowerCase();
 
-    function renderAvis(list) {
-      if(!list || list.length === 0) {
-        avisContainer.innerHTML = '<p>Aucun avis pour le moment.</p>';
+      galleryItems.forEach(item => {
+        const title = item.querySelector('h3').textContent.toLowerCase();
+        const desc = item.querySelector('p').textContent.toLowerCase();
+        const itemCategory = item.dataset.category;
+
+        const matchesSearch = title.includes(searchTerm) || desc.includes(searchTerm);
+        
+        let matchesCategory = false;
+        if (currentCategory === 'all-galets') {
+          matchesCategory = itemCategory.startsWith('galets-');
+        } else if (currentCategory === 'all-cadres') {
+          matchesCategory = itemCategory.startsWith('cadres-');
+        } else {
+          matchesCategory = itemCategory === currentCategory;
+        }
+
+        item.style.display = matchesSearch && matchesCategory ? '' : 'none';
+      });
+    }
+
+    // Gestion des favoris
+    function initFavoris() {
+      likeBtns.forEach(btn => {
+        const id = btn.dataset.id;
+        if (avisData.includes(Number(id))) {
+          btn.classList.add('liked');
+        }
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          btn.classList.toggle('liked');
+        });
+      });
+    }
+
+    // Gestion des avis
+    function renderAvis() {
+      if (avisData.length === 0) {
+        avisContainer.innerHTML = '<p style="color:#999;">Aucun avis pour le moment.</p>';
         return;
       }
-      avisContainer.innerHTML = list.map(a => `
-        <div style="background:#fff;border-radius:8px;padding:10px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+
+      avisContainer.innerHTML = avisData.map(a => `
+        <div class="avis-item">
           <strong>${escapeHtml(a.nom)}</strong>
-          <p style="margin:.3rem 0;"><strong>Note : </strong>${'★'.repeat(a.note)+'☆'.repeat(5-a.note)}</p>
+          <p class="stars" style="margin:.3rem 0;"><strong>Note : </strong>${'★'.repeat(a.note)}${'☆'.repeat(5 - a.note)}</p>
           <p style="margin:.5rem 0 0;">${escapeHtml(a.message)}</p>
         </div>
       `).join('');
     }
 
-    function addLocalAvis(){
+    function addAvis() {
       const nom = document.getElementById('nom-avis').value.trim();
       const message = document.getElementById('message-avis').value.trim();
       const note = parseInt(document.getElementById('note-avis').value);
-      if(!nom || !message || !note) return;
-      saveLocalAvis({ nom, message, note, date: Date.now() });
-      document.getElementById('avisForm').reset();
-    }
-    renderAvis(getLocalAvis());
 
-    /* Gestion des favoris */
-    const FAVORIS_KEY = 'atelier_favoris';
-    function getFavoris(){ return JSON.parse(localStorage.getItem(FAVORIS_KEY)) || []; }
-    function toggleFavori(id, el){
-      let favs = getFavoris();
-      if(favs.includes(id)){
-        favs = favs.filter(f => f !== id);
-        el.classList.remove('liked');
-      } else {
-        favs.push(id);
-        el.classList.add('liked');
-      }
-      localStorage.setItem(FAVORIS_KEY, JSON.stringify(favs));
+      if (!nom || !message || !note) return;
+
+      avisData.unshift({ nom, message, note });
+      avisForm.reset();
+      renderAvis();
     }
 
-    document.querySelectorAll('.like-btn').forEach(btn=>{
-      const id = btn.dataset.id;
-      const favs = getFavoris();
-      if(favs.includes(id)) btn.classList.add('liked');
-      btn.addEventListener('click', e=>{
-        e.preventDefault();
-        toggleFavori(id, btn);
-      });
-    });
+    function escapeHtml(s) {
+      const div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
+    }
 
-const filterButtons = document.querySelectorAll('.filter-btn');
-const galleryItems = document.querySelectorAll('.item');
-let currentCategory = 'all';
-
-filterButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    currentCategory = button.getAttribute('data-category');
-
-    // changer le bouton actif
-    filterButtons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-
-    filterGallery();
-  });
-});
-
-searchInput.addEventListener('input', filterGallery);
-
-function filterGallery() {
-  const searchTerm = searchInput.value.toLowerCase();
-
-  galleryItems.forEach(item => {
-    const title = item.querySelector('h3').textContent.toLowerCase();
-    const desc = item.querySelector('p').textContent.toLowerCase();
-    const matchesSearch = title.includes(searchTerm) || desc.includes(searchTerm);
-    const matchesCategory = currentCategory === 'all' || item.dataset.category === currentCategory;
-
-   item.style.display = matchesSearch && matchesCategory ? '' : 'none';
-  });
-}
+    // Initialisation
+    initFavoris();
+    renderAvis();
   </script>
 </body>
 </html>
