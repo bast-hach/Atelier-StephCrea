@@ -29,7 +29,6 @@
     nav a { margin: 0 1rem; text-decoration: none; color: #b9885c; font-weight: bold; }
     nav a:hover { text-decoration: underline; }
 
-    /* Barre de recherche */
     .search-bar { text-align: center; margin: 2rem 0 1rem; }
     .search-bar input {
       width: 320px;
@@ -47,7 +46,6 @@
       box-shadow: 0 0 6px rgba(185, 136, 92, 0.25);
     }
 
-    /* Filtres */
     .filters-container {
       max-width: 1400px;
       margin: 2rem auto;
@@ -99,7 +97,6 @@
       border-color: #b9885c;
     }
 
-    /* Galerie */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -187,7 +184,6 @@
     .like-btn:hover { color: #e74c3c; }
     .like-btn.liked { color: #e74c3c; }
 
-    /* FORM CONTAINER */
     .form-container {
       max-width: 1200px;
       margin: 0 auto;
@@ -279,7 +275,6 @@
     }
 
     .avis-item strong { color: #b9885c; }
-    .avis-item .stars { color: #d3a97d; margin: 0.3rem 0; }
   </style>
 </head>
 <body>
@@ -290,17 +285,16 @@
   </header>
 
   <nav>
-    <a href="https://claude.ai">Accueil</a> |
+    <a href="index.html">Accueil</a> |
     <a href="exposition.html">Boutique</a> |
-    <a href="https://claude.ai">À propos</a> |
-    <a href="https://claude.ai" class="menu-fav">Mes Favoris ❤️</a>
+    <a href="a-propos.html">À propos</a> |
+    <a href="favoris.html" class="menu-fav">Mes Favoris ❤️</a>
   </nav>
 
   <div class="search-bar">
     <input id="searchInput" type="text" placeholder="Rechercher un produit...">
   </div>
 
-  <!-- Filtres de catégories -->
   <div class="filters-container" role="region" aria-label="Filtres de produits">
     <section class="filter-section">
       <h3>Galets peints</h3>
@@ -325,10 +319,8 @@
     </section>
   </div>
 
-  <!-- Galerie -->
   <section class="gallery" aria-label="Galerie d'œuvres">
     <div class="gallery-grid" id="galleryGrid">
-      <!-- Galets peints -->
       <div class="item" data-category="galets-nature">
         <img src="https://via.placeholder.com/300" alt="Galet cactus">
         <h3>Galet cactus</h3>
@@ -451,11 +443,10 @@
     </div>
   </section>
 
-  <!-- Formulaires -->
   <div class="form-container" role="region" aria-label="Contact et avis clients">
     <section class="contact" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact / Collaboration</h2>
-      <form onsubmit="event.preventDefault(); alert('Formulaire contact envoyé (placeholder');">
+      <form onsubmit="event.preventDefault(); alert('Formulaire contact envoyé');">
         <input type="text" name="nom-contact" placeholder="Votre nom" required>
         <input type="email" name="email-contact" placeholder="Votre email" required>
         <textarea name="msg-contact" rows="5" placeholder="Votre message..." required></textarea>
@@ -488,25 +479,22 @@
   </footer>
 
   <script>
-    // Cache DOM
-    const searchInput = document.getElementById('searchInput');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.item');
-    const likeBtns = document.querySelectorAll('.like-btn');
-    const avisForm = document.getElementById('avisForm');
-    const avisContainer = document.getElementById('avisContainer');
+    var searchInput = document.getElementById('searchInput');
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var galleryItems = document.querySelectorAll('.item');
+    var likeBtns = document.querySelectorAll('.like-btn');
+    var avisForm = document.getElementById('avisForm');
+    var avisContainer = document.getElementById('avisContainer');
 
-    let currentCategory = 'all-galets';
-    let avisData = [];
+    var currentCategory = 'all-galets';
+    var avisData = [];
 
-    // Filtres améliorés avec délégation d'événements
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const section = btn.closest('.filter-section');
-        const sectionBtns = section.querySelectorAll('.filter-btn');
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var section = btn.closest('.filter-section');
+        var sectionBtns = section.querySelectorAll('.filter-btn');
         
-        // Désactiver les boutons de la même section
-        sectionBtns.forEach(b => b.classList.remove('active'));
+        sectionBtns.forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
         
         currentCategory = btn.dataset.category;
@@ -514,20 +502,19 @@
       });
     });
 
-    // Recherche optimisée
     searchInput.addEventListener('input', filterGallery);
 
     function filterGallery() {
-      const searchTerm = searchInput.value.toLowerCase();
+      var searchTerm = searchInput.value.toLowerCase();
 
-      galleryItems.forEach(item => {
-        const title = item.querySelector('h3').textContent.toLowerCase();
-        const desc = item.querySelector('p').textContent.toLowerCase();
-        const itemCategory = item.dataset.category;
+      galleryItems.forEach(function(item) {
+        var title = item.querySelector('h3').textContent.toLowerCase();
+        var desc = item.querySelector('p').textContent.toLowerCase();
+        var itemCategory = item.dataset.category;
 
-        const matchesSearch = title.includes(searchTerm) || desc.includes(searchTerm);
+        var matchesSearch = title.includes(searchTerm) || desc.includes(searchTerm);
         
-        let matchesCategory = false;
+        var matchesCategory = false;
         if (currentCategory === 'all-galets') {
           matchesCategory = itemCategory.startsWith('galets-');
         } else if (currentCategory === 'all-cadres') {
@@ -540,56 +527,49 @@
       });
     }
 
-    // Gestion des favoris
-    function initFavoris() {
-      likeBtns.forEach(btn => {
-        const id = btn.dataset.id;
-        if (avisData.includes(Number(id))) {
-          btn.classList.add('liked');
-        }
-        btn.addEventListener('click', e => {
-          e.preventDefault();
-          btn.classList.toggle('liked');
-        });
-      });
-    }
-
-    // Gestion des avis
     function renderAvis() {
       if (avisData.length === 0) {
         avisContainer.innerHTML = '<p style="color:#999;">Aucun avis pour le moment.</p>';
         return;
       }
 
-      avisContainer.innerHTML = avisData.map(a => `
-        <div class="avis-item">
-          <strong>${escapeHtml(a.nom)}</strong>
-          <p class="stars" style="margin:.3rem 0;"><strong>Note : </strong>${'★'.repeat(a.note)}${'☆'.repeat(5 - a.note)}</p>
-          <p style="margin:.5rem 0 0;">${escapeHtml(a.message)}</p>
-        </div>
-      `).join('');
+      var html = '';
+      for (var i = 0; i < avisData.length; i++) {
+        var a = avisData[i];
+        var stars = '';
+        for (var j = 0; j < a.note; j++) stars += '★';
+        for (var j = a.note; j < 5; j++) stars += '☆';
+        
+        html += '<div class="avis-item"><strong>' + escapeHtml(a.nom) + '</strong><p style="margin:.3rem 0;"><strong>Note : </strong>' + stars + '</p><p style="margin:.5rem 0 0;">' + escapeHtml(a.message) + '</p></div>';
+      }
+      avisContainer.innerHTML = html;
     }
 
     function addAvis() {
-      const nom = document.getElementById('nom-avis').value.trim();
-      const message = document.getElementById('message-avis').value.trim();
-      const note = parseInt(document.getElementById('note-avis').value);
+      var nom = document.getElementById('nom-avis').value.trim();
+      var message = document.getElementById('message-avis').value.trim();
+      var note = parseInt(document.getElementById('note-avis').value);
 
       if (!nom || !message || !note) return;
 
-      avisData.unshift({ nom, message, note });
+      avisData.unshift({ nom: nom, message: message, note: note });
       avisForm.reset();
       renderAvis();
     }
 
     function escapeHtml(s) {
-      const div = document.createElement('div');
+      var div = document.createElement('div');
       div.textContent = s;
       return div.innerHTML;
     }
 
-    // Initialisation
-    initFavoris();
+    likeBtns.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        btn.classList.toggle('liked');
+      });
+    });
+
     renderAvis();
   </script>
 </body>
