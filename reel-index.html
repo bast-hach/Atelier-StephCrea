@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Atelier StephCrea - Créations Artisanales Uniques</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: #f9f7f3;
+      color: #3d3d3d;
+      line-height: 1.6;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                  url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 12rem 2rem 10rem;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 3.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background-color: #d3a97d;
+      color: white;
+      padding: 1.1rem 2.8rem;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .hero-btn:hover {
+      background-color: #b9885c;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Navigation */
+    nav {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.2rem 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3d3d3d;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+      position: relative;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #d3a97d;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #d3a97d;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.8rem;
+      color: #b9885c;
+      text-align: center;
+      margin-bottom: 3.5rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 1.2rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #d3a97d, transparent);
+    }
+
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .about-image {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .about-image:hover {
+      transform: scale(1.02);
+    }
+
+    .about-text p {
+      font-size: 1.15rem;
+      line-height: 2;
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    /* Features Grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin-top: 4rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2.8rem 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.6rem;
+      color: #b9885c;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .feature-card p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    /* Process Section */
+    .process {
+      background: white;
+      padding: 5rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #d3a97d, #b9885c);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .step h3 {
+      font-family: 'Raleway', sans-serif;
+      color: #b9885c;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .step p {
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #d3a97d, #b9885c);
+      color: white;
+      text-align: center;
+      padding: 5rem 2rem;
+      margin-top: 5rem;
+    }
+
+    .cta-section h2 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .cta-section p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn-white {
+      display: inline-block;
+      background-color: white;
+      color: #b9885c;
+      padding: 1.1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .cta-btn-white:hover {
+      background-color: #f9f7f3;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .cta-btn-outline {
+      display: inline-block;
+      background-color: transparent;
+      color: white;
+      padding: 1.1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 30px;
+      border: 2px solid white;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .cta-btn-outline:hover {
+      background-color: white;
+      color: #b9885c;
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #3d3d3d;
+      color: white;
+      text-align: center;
+      padding: 2.5rem 2rem;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #d3a97d;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      margin: 0 0.8rem;
+    }
+
+    footer a:hover {
+      color: #b9885c;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 8rem 1.5rem 6rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      nav ul {
+        gap: 1.2rem;
+        padding: 0 1rem;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .container {
+        padding: 3rem 1.5rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+
+      .cta-section h2 {
+        font-size: 2.2rem;
+      }
+
+      .cta-section p {
+        font-size: 1.1rem;
+      }
+
+      .process-steps {
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>L'Atelier StephCrea</h1>
+    <p>Créations artisanales uniques sur galets et bois flotté</p>
+    <a href="galerie.html" class="hero-btn">Découvrir mes créations</a>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="tarifs.html">Tarifs & Fonctionnement</a></li>
+      <li><a href="contact.html">Commander</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="avis.html">Avis clients</a></li>
+    </ul>
+  </nav>
+
+  <!-- About Section -->
+  <section class="container">
+    <h2 class="section-title">Des créations qui racontent une histoire</h2>
+    <div class="about-content">
+      <img src="https://images.unsplash.com/photo-1513519245088-0e12902e35ca?auto=format&fit=crop&w=800&q=80" alt="Créations artisanales" class="about-image">
+      <div class="about-text">
+        <p>Bienvenue dans mon univers créatif où chaque pierre, chaque morceau de bois flotté devient une œuvre unique. Je ne crée pas des produits en série, mais des pièces personnalisées qui reflètent vos émotions, vos souvenirs, vos rêves.</p>
+        <p>Galets peints, arbres de vie, cadres famille, portraits sur pierre... Chaque création est façonnée avec patience, amour et une profonde connexion avec la nature. Les matériaux que j'utilise sont collectés avec respect, polis par la mer, sculptés par le temps.</p>
+        <p>Mon atelier n'est pas une boutique, c'est un espace où naissent des œuvres sur mesure, conçues spécialement pour vous et vos proches.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="container">
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>100% Fait main</h3>
+        <p>Chaque œuvre est unique, entièrement peinte et assemblée à la main. Pas de reproduction, pas de série.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌿</div>
+        <h3>Matériaux naturels</h3>
+        <p>Galets polis par la mer, bois flotté sculpté par les vagues, peintures de qualité artistique.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💝</div>
+        <h3>Sur commande</h3>
+        <p>Vos idées deviennent réalité. Je crée selon vos souhaits pour des cadeaux vraiment personnels.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="process">
+    <div class="container">
+      <h2 class="section-title">Comment ça marche ?</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Découvrez</h3>
+          <p>Explorez ma galerie pour voir mes créations passées et vous inspirer.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Contactez-moi</h3>
+          <p>Partagez votre idée, vos envies, l'occasion spéciale que vous célébrez.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Création</h3>
+          <p>Je crée votre œuvre unique avec passion et attention aux détails.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Livraison</h3>
+          <p>Recevez votre création personnalisée, prête à offrir ou à exposer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2>Prêt à créer quelque chose d'unique ?</h2>
+    <p>Que ce soit pour un cadeau de mariage, une naissance, un anniversaire, ou simplement pour embellir votre intérieur, je suis là pour donner vie à vos idées.</p>
+    <div class="cta-buttons">
+      <a href="galerie.html" class="cta-btn-white">Voir la galerie</a>
+      <a href="contact.html" class="cta-btn-outline">Me contacter</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 L'Atelier StephCrea — Créations artisanales avec passion</p>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="contact.html">Contact</a>
+      <a href="apropos.html">À propos</a>
+      <a href="avis.html">Avis</a>
+    </p>
+  </footer>
+</body>
+</html>
