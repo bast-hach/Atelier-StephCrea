@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commander une création - L'Atelier StephCrea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: #f9f7f3;
+      color: #3d3d3d;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #d3a97d, #b9885c);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    header h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.2rem 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3d3d3d;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    nav a:hover {
+      color: #d3a97d;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .intro-section {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+    }
+
+    .intro-section h2 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.5rem;
+      color: #b9885c;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .intro-section p {
+      font-size: 1.2rem;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    /* Contact Info Cards */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .info-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .info-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-card h3 {
+      font-family: 'Raleway', sans-serif;
+      color: #b9885c;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .info-card p {
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    .info-card a {
+      color: #b9885c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .info-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Form Container */
+    .form-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .form-section {
+      background: white;
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-section h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2rem;
+      color: #b9885c;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #3d3d3d;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: 'Lora', serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #b9885c;
+      box-shadow: 0 0 10px rgba(185, 136, 92, 0.2);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-group small {
+      display: block;
+      margin-top: 0.5rem;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #d3a97d, #b9885c);
+      color: white;
+      padding: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Raleway', sans-serif;
+      margin-top: 1rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(185, 136, 92, 0.3);
+    }
+
+    .success-message {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    /* Tips Section */
+    .tips-section {
+      background: #f0ede8;
+      padding: 2.5rem;
+      border-radius: 15px;
+    }
+
+    .tips-section h4 {
+      font-family: 'Raleway', sans-serif;
+      color: #b9885c;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .tips-section ul {
+      list-style: none;
+    }
+
+    .tips-section li {
+      padding: 0.8rem 0;
+      color: #555;
+      font-size: 1.05rem;
+    }
+
+    .tips-section li::before {
+      content: "💡 ";
+      margin-right: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #3d3d3d;
+      color: white;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #d3a97d;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      margin: 0 0.8rem;
+    }
+
+    footer a:hover {
+      color: #b9885c;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .form-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header p {
+        font-size: 1.1rem;
+      }
+
+      nav ul {
+        gap: 1.2rem;
+        padding: 0 1rem;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+      }
+
+      .container {
+        padding: 3rem 1.5rem;
+      }
+
+      .form-section {
+        padding: 2rem;
+      }
+
+      .intro-section h2 {
+        font-size: 2rem;
+      }
+
+      .intro-section p {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Commander une création</h1>
+    <p>Donnons vie ensemble à votre projet unique</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="tarifs.html">Tarifs & Fonctionnement</a></li>
+      <li><a href="contact.html">Commander</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="avis.html">Avis clients</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="intro-section">
+      <h2>Contactez-moi</h2>
+      <p>
+        Que vous ayez une idée précise ou simplement une envie, je suis là pour vous écouter 
+        et créer avec vous une œuvre qui vous ressemble. Remplissez le formulaire ci-dessous 
+        ou contactez-moi directement par téléphone ou email.
+      </p>
+    </div>
+
+    <!-- Contact Info Cards -->
+    <div class="contact-info">
+      <div class="info-card">
+        <div class="info-icon">📧</div>
+        <h3>Email</h3>
+        <p><a href="mailto:contact@atelierstephcrea.fr">contact@atelierstephcrea.fr</a></p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📱</div>
+        <h3>Téléphone</h3>
+        <p><a href="tel:+33612345678">06 12 34 56 78</a></p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">💳</div>
+        <h3>Paiement</h3>
+        <p>Après validation du devis<br>Virement / PayPal</p>
+      </div>
+    </div>
+
+    <!-- Form Wrapper -->
+    <div class="form-wrapper">
+      <!-- Main Form -->
+      <div class="form-section">
+        <h3>Formulaire de commande</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="nom">Votre nom complet *</label>
+            <input type="text" id="nom" name="nom" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Votre email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="telephone">Votre téléphone</label>
+            <input type="tel" id="telephone" name="telephone">
+            <small>Optionnel - Pour vous joindre plus facilement</small>
+          </div>
+
+          <div class="form-group">
+            <label for="typeCreation">Type de création souhaité *</label>
+            <select id="typeCreation" name="typeCreation" required>
+              <option value="">Choisissez...</option>
+              <option value="galet">Galet peint</option>
+              <option value="arbre">Arbre de vie</option>
+              <option value="cadre-famille">Cadre famille</option>
+              <option value="cadre-couple">Cadre couple</option>
+              <option value="portrait">Portrait sur galet</option>
+              <option value="evenement">Événement spécial</option>
+              <option value="personnalise">Création sur mesure</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="occasion">Pour quelle occasion ?</label>
+            <input type="text" id="occasion" name="occasion" placeholder="Ex: Mariage, Anniversaire, Naissance...">
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Budget estimé</label>
+            <select id="budget" name="budget">
+              <option value="">Non défini</option>
+              <option value="15-30">15-30€</option>
+              <option value="30-50">30-50€</option>
+              <option value="50-80">50-80€</option>
+              <option value="80+">80€ et plus</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="delai">Délai souhaité</label>
+            <input type="text" id="delai" name="delai" placeholder="Ex: Avant le 25 décembre">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Décrivez votre projet *</label>
+            <textarea id="message" name="message" required placeholder="Parlez-moi de votre idée : couleurs, thème, noms à inclure, inspiration..."></textarea>
+            <small>Plus vous êtes précis, mieux je pourrai répondre à vos attentes</small>
+          </div>
+
+          <button type="submit" class="submit-btn">Envoyer ma demande</button>
+
+          <div id="successMessage" class="success-message">
+            ✅ Merci ! Votre message a bien été envoyé. Je vous répondrai dans les 24-48h.
+          </div>
+        </form>
+      </div>
+
+      <!-- Tips Section -->
+      <div class="form-section tips-section">
+        <h4>Conseils pour votre demande</h4>
+        <ul>
+          <li>Précisez le type de création qui vous intéresse</li>
+          <li>Indiquez l'occasion (cadeau, décoration personnelle...)</li>
+          <li>Mentionnez vos préférences de couleurs</li>
+          <li>Si c'est pour offrir, parlez-moi de la personne</li>
+          <li>N'hésitez pas à joindre une photo d'inspiration</li>
+          <li>Indiquez votre budget approximatif</li>
+          <li>Précisez si vous avez une date limite</li>
+        </ul>
+
+        <h4 style="margin-top: 2rem;">Que se passe-t-il après ?</h4>
+        <ul>
+          <li>Je vous réponds sous 24-48h maximum</li>
+          <li>Nous discutons de votre projet ensemble</li>
+          <li>Je vous propose un tarif exact et un délai</li>
+          <li>Une fois d'accord, je vous envoie mes coordonnées de paiement</li>
+          <li>Dès réception du paiement, je commence la création</li>
+          <li>Je vous tiens au courant de l'avancement</li>
+          <li>Vous recevez votre œuvre unique !</li>
+        </ul>
+
+        <h4 style="margin-top: 2rem;">💳 Comment se passe le paiement ?</h4>
+        <ul>
+          <li><strong>Pas de paiement en ligne direct</strong> - Chaque création est unique</li>
+          <li>Je vous donne un <strong>devis personnalisé</strong> selon votre demande</li>
+          <li>Une fois validé, je vous envoie mes <strong>coordonnées de paiement</strong></li>
+          <li><strong>Un acompte de 30%</strong> est demandé avant de commencer</li>
+          <li>Cet acompte couvre les matériaux et réserve mon temps</li>
+          <li><strong>Le solde</strong> est à régler avant la livraison de l'œuvre</li>
+          <li><strong>Moyens acceptés :</strong> Virement bancaire, PayPal, Paylib</li>
+        </ul>
+
+        <h4 style="margin-top: 2rem;">⚠️ Conditions importantes</h4>
+        <ul>
+          <li>Les créations sont <strong>100% personnalisées</strong> et sur mesure</li>
+          <li>L'acompte n'est <strong>pas remboursable</strong> une fois le travail commencé</li>
+          <li>Chaque œuvre est unique et ne peut être revendue</li>
+          <li>Des photos de l'avancement peuvent vous être envoyées</li>
+          <li>Modifications possibles avant la finalisation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 L'Atelier StephCrea — Créations artisanales avec passion</p>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="contact.html">Contact</a>
+      <a href="apropos.html">À propos</a>
+      <a href="avis.html">Avis</a>
+    </p>
+  </footer>
+
+  <script>
+    // Gestion du formulaire
+    const contactForm = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    // Récupérer le paramètre URL si on vient de la galerie
+    const urlParams = new URLSearchParams(window.location.search);
+    const creationParam = urlParams.get('creation');
+    if (creationParam) {
+      document.getElementById('message').value = `Je suis intéressé(e) par une création similaire à : ${creationParam}\n\n`;
+    }
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Récupération des données du formulaire
+      const formData = {
+        nom: document.getElementById('nom').value,
+        email: document.getElementById('email').value,
+        telephone: document.getElementById('telephone').value,
+        typeCreation: document.getElementById('typeCreation').value,
+        occasion: document.getElementById('occasion').value,
+        budget: document.getElementById('budget').value,
+        delai: document.getElementById('delai').value,
+        message: document.getElementById('message').value
+      };
+
+      // Simulation d'envoi (dans un vrai site, vous enverriez à un serveur)
+      console.log('Données du formulaire:', formData);
+
+      // Afficher le message de succès
+      successMessage.classList.add('show');
+
+      // Réinitialiser le formulaire
+      contactForm.reset();
+
+      // Masquer le message après 5 secondes
+      setTimeout(() => {
+        successMessage.classList.remove('show');
+      }, 5000);
+
+      // Scroll vers le message de succès
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+</body>
+</html>
