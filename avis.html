@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avis clients - L'Atelier StephCrea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: #f9f7f3;
+      color: #3d3d3d;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #d3a97d, #b9885c);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    header h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+    }
+
+    nav {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.2rem 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3d3d3d;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    nav a:hover {
+      color: #d3a97d;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-number {
+      font-family: 'Raleway', sans-serif;
+      font-size: 3rem;
+      color: #b9885c;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    .stars {
+      color: #ffc107;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-section {
+      background: white;
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      margin-bottom: 4rem;
+    }
+
+    .form-section h2 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.2rem;
+      color: #b9885c;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .form-section p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #3d3d3d;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: 'Lora', serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #b9885c;
+      box-shadow: 0 0 10px rgba(185, 136, 92, 0.2);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .rating-input {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .star {
+      color: #ddd;
+      transition: color 0.2s ease;
+    }
+
+    .star.active {
+      color: #ffc107;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #d3a97d, #b9885c);
+      color: white;
+      padding: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Raleway', sans-serif;
+      margin-top: 1rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(185, 136, 92, 0.3);
+    }
+
+    .success-message {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    .reviews-section h2 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.5rem;
+      color: #b9885c;
+      margin-bottom: 3rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .review-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .review-author {
+      font-weight: 700;
+      color: #b9885c;
+      font-size: 1.2rem;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .review-stars {
+      color: #ffc107;
+      font-size: 1.1rem;
+    }
+
+    .review-date {
+      color: #999;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .review-text {
+      color: #555;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .review-creation {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f0f0f0;
+      color: #999;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+
+    .no-reviews {
+      text-align: center;
+      padding: 3rem;
+      color: #999;
+      font-size: 1.2rem;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #b9885c, #d3a97d);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-radius: 15px;
+      margin-top: 4rem;
+    }
+
+    .cta-section h2 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: white;
+      color: #b9885c;
+      padding: 1.1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .cta-btn:hover {
+      background-color: #f9f7f3;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background-color: #3d3d3d;
+      color: white;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #d3a97d;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      margin: 0 0.8rem;
+    }
+
+    footer a:hover {
+      color: #b9885c;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header p {
+        font-size: 1.1rem;
+      }
+
+      nav ul {
+        gap: 1.2rem;
+        padding: 0 1rem;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+      }
+
+      .container {
+        padding: 3rem 1.5rem;
+      }
+
+      .form-section {
+        padding: 2rem;
+      }
+
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-section {
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Avis clients</h1>
+    <p>Ce qu'ils disent de mes créations</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="exposition.html">Galerie</a></li>
+      <li><a href="fonctionnement.html">Tarifs & Fonctionnement</a></li>
+      <li><a href="commande.html">Commander</a></li>
+      <li><a href="a-propos.html">À propos</a></li>
+      <li><a href="avis.html">Avis clients</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stars">★★★★★</div>
+        <div class="stat-number" id="averageRating">-</div>
+        <div class="stat-label">Note moyenne</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="totalReviews">0</div>
+        <div class="stat-label">Avis clients</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="satisfactionRate">-</div>
+        <div class="stat-label">Clients satisfaits</div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Laissez votre avis</h2>
+      <p>Vous avez commandé une création ? Partagez votre expérience !</p>
+      
+      <form id="reviewForm">
+        <div class="form-group">
+          <label for="nom">Votre prénom *</label>
+          <input type="text" id="nom" name="nom" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Votre email (non publié) *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="creation">Création commandée</label>
+          <input type="text" id="creation" name="creation" placeholder="Ex: Arbre de vie, Cadre famille...">
+        </div>
+
+        <div class="form-group">
+          <label>Votre note *</label>
+          <div class="rating-input" id="ratingInput">
+            <span class="star" data-rating="1">★</span>
+            <span class="star" data-rating="2">★</span>
+            <span class="star" data-rating="3">★</span>
+            <span class="star" data-rating="4">★</span>
+            <span class="star" data-rating="5">★</span>
+          </div>
+          <input type="hidden" id="rating" name="rating" required>
+        </div>
+
+        <div class="form-group">
+          <label for="commentaire">Votre avis *</label>
+          <textarea id="commentaire" name="commentaire" required placeholder="Partagez votre expérience..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Publier mon avis</button>
+
+        <div id="successMessage" class="success-message">
+          ✅ Merci pour votre avis ! Il sera publié après vérification.
+        </div>
+      </form>
+    </div>
+
+    <div class="reviews-section">
+      <h2>Témoignages clients</h2>
+      <div class="reviews-grid" id="reviewsGrid"></div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Envie de votre propre création ?</h2>
+      <p>Rejoignez mes clients satisfaits et commandez votre œuvre personnalisée.</p>
+      <a href="commande.html" class="cta-btn">Commander maintenant</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 L'Atelier StephCrea — Créations artisanales avec passion</p>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="exposition.html">Galerie</a>
+      <a href="fonctionnement.html">Tarifs</a>
+      <a href="commande.html">Contact</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="avis.html">Avis</a>
+    </p>
+  </footer>
+
+  <script>
+    const reviews = [];
+
+    const reviewsGrid = document.getElementById('reviewsGrid');
+    const reviewForm = document.getElementById('reviewForm');
+    const ratingInput = document.getElementById('ratingInput');
+    const ratingValue = document.getElementById('rating');
+    const successMessage = document.getElementById('successMessage');
+    const totalReviewsElement = document.getElementById('totalReviews');
+    const averageRatingElement = document.getElementById('averageRating');
+    const satisfactionRateElement = document.getElementById('satisfactionRate');
+
+    let selectedRating = 0;
+
+    function updateStats() {
+      const total = reviews.length;
+      totalReviewsElement.textContent = total;
+
+      if (total === 0) {
+        averageRatingElement.textContent = '-';
+        satisfactionRateElement.textContent = '-';
+        return;
+      }
+
+      const sum = reviews.reduce((acc, review) => acc + review.note, 0);
+      const average = (sum / total).toFixed(1);
+      averageRatingElement.textContent = average;
+
+      const satisfied = reviews.filter(review => review.note >= 4).length;
+      const satisfactionPercentage = Math.round((satisfied / total) * 100);
+      satisfactionRateElement.textContent = satisfactionPercentage + '%';
+    }
+
+    const stars = ratingInput.querySelectorAll('.star');
+    stars.forEach(star => {
+      star.addEventListener('click', function() {
+        selectedRating = parseInt(this.dataset.rating);
+        ratingValue.value = selectedRating;
+        updateStars();
+      });
+
+      star.addEventListener('mouseenter', function() {
+        const rating = parseInt(this.dataset.rating);
+        stars.forEach((s, index) => {
+          if (index < rating) {
+            s.style.color = '#ffc107';
+          } else {
+            s.style.color = '#ddd';
+          }
+        });
+      });
+    });
+
+    ratingInput.addEventListener('mouseleave', updateStars);
+
+    function updateStars() {
+      stars.forEach((star, index) => {
+        if (index < selectedRating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    function displayReviews() {
+      if (reviews.length === 0) {
+        reviewsGrid.innerHTML = '<div class="no-reviews">Aucun avis pour le moment. Soyez le premier à partager votre expérience !</div>';
+      } else {
+        reviewsGrid.innerHTML = '';
+        
+        reviews.forEach(review => {
+          const card = document.createElement('div');
+          card.className = 'review-card';
+          
+          const starsHTML = '★'.repeat(review.note) + '☆'.repeat(5 - review.note);
+          
+          card.innerHTML = `
+            <div class="review-header">
+              <div class="review-author">${escapeHtml(review.nom)}</div>
+              <div class="review-stars">${starsHTML}</div>
+            </div>
+            <div class="review-date">${review.date}</div>
+            <div class="review-text">${escapeHtml(review.commentaire)}</div>
+            <div class="review-creation">Création : ${escapeHtml(review.creation)}</div>
+          `;
+          
+          reviewsGrid.appendChild(card);
+        });
+      }
+
+      updateStats();
+    }
+
+    reviewForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (selectedRating === 0) {
+        alert('Veuillez sélectionner une note');
+        return;
+      }
+
+      const formData = {
+        nom: document.getElementById('nom').value,
+        email: document.getElementById('email').value,
+        creation: document.getElementById('creation').value,
+        note: selectedRating,
+        commentaire: document.getElementById('commentaire').value,
+        date: new Date().toLocaleDateString('fr-FR', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        })
+      };
+
+      console.log('Nouvel avis soumis:', formData);
+
+      successMessage.classList.add('show');
+      reviewForm.reset();
+      selectedRating = 0;
+      updateStars();
+
+      setTimeout(() => {
+        successMessage.classList.remove('show');
+      }, 5000);
+
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    displayReviews();
+  </script>
+</body>
+</html>
