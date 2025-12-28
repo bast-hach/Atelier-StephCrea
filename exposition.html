@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie - L'Atelier StephCrea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: #f9f7f3;
+      color: #3d3d3d;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #d3a97d, #b9885c);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    header h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+    }
+
+    nav {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.2rem 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3d3d3d;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    nav a:hover {
+      color: #d3a97d;
+    }
+
+    .search-container {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: 2px solid #ddd;
+      border-radius: 30px;
+      font-size: 1.05rem;
+      font-family: 'Lora', serif;
+      transition: all 0.3s ease;
+    }
+
+    .search-bar:focus {
+      outline: none;
+      border-color: #b9885c;
+      box-shadow: 0 0 10px rgba(185, 136, 92, 0.2);
+    }
+
+    .filters-section {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .filters-section h2 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.8rem;
+      color: #b9885c;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .filter-btn {
+      background-color: white;
+      color: #3d3d3d;
+      border: 2px solid #ddd;
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: #b9885c;
+      background-color: #f9f7f3;
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background-color: #b9885c;
+      color: white;
+      border-color: #b9885c;
+    }
+
+    .gallery {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .gallery-item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .item-info {
+      padding: 1.5rem;
+    }
+
+    .item-category {
+      display: inline-block;
+      background-color: #f0ede8;
+      color: #b9885c;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .item-info h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.4rem;
+      color: #3d3d3d;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .item-info p {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .item-price {
+      color: #b9885c;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .contact-btn {
+      display: block;
+      width: 100%;
+      background-color: #b9885c;
+      color: white;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Lora', serif;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .contact-btn:hover {
+      background-color: #9a6b45;
+      transform: translateY(-2px);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #999;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      background-color: #3d3d3d;
+      color: white;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #d3a97d;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      margin: 0 0.8rem;
+    }
+
+    footer a:hover {
+      color: #b9885c;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header p {
+        font-size: 1.1rem;
+      }
+
+      nav ul {
+        gap: 1.2rem;
+        padding: 0 1rem;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .gallery {
+        padding: 1.5rem;
+      }
+
+      .filter-buttons {
+        gap: 0.8rem;
+      }
+
+      .filter-btn {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Galerie de créations</h1>
+    <p>Découvrez mes œuvres passées pour vous inspirer</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="exposition.html">Galerie</a></li>
+      <li><a href="fonctionnement.html">Tarifs & Fonctionnement</a></li>
+      <li><a href="commande.html">Commander</a></li>
+      <li><a href="a-propos.html">À propos</a></li>
+      <li><a href="avis.html">Avis clients</a></li>
+    </ul>
+  </nav>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" class="search-bar" placeholder="Rechercher une création...">
+  </div>
+
+  <section class="filters-section">
+    <h2>Filtrer par catégorie</h2>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-category="all">Toutes les créations</button>
+      <button class="filter-btn" data-category="galets">Galets peints</button>
+      <button class="filter-btn" data-category="arbres">Arbres de vie</button>
+      <button class="filter-btn" data-category="cadres-famille">Cadres famille</button>
+      <button class="filter-btn" data-category="cadres-amour">Cadres couple</button>
+      <button class="filter-btn" data-category="portraits">Portraits</button>
+      <button class="filter-btn" data-category="evenements">Événements spéciaux</button>
+      <button class="filter-btn" data-category="personnalise">Sur mesure</button>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="gallery-grid" id="galleryGrid"></div>
+    <div id="noResults" class="no-results" style="display: none;">
+      Aucune création ne correspond à votre recherche.
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 L'Atelier StephCrea — Créations artisanales avec passion</p>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="exposition.html">Galerie</a>
+      <a href="fonctionnement.html">Tarifs</a>
+      <a href="commande.html">Contact</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="avis.html">Avis</a>
+    </p>
+  </footer>
+
+  <script>
+    const creations = [
+      {
+        id: 1,
+        title: "Galet cactus",
+        category: "galets",
+        categoryName: "Galets peints",
+        description: "Petit galet peint avec motif cactus, parfait pour décorer un bureau ou une étagère.",
+        price: "15-20€",
+        image: "https://images.unsplash.com/photo-1509937528035-ad76254b0356?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 2,
+        title: "Arbre de vie doré",
+        category: "arbres",
+        categoryName: "Arbres de vie",
+        description: "Arbre de vie en fil doré sur bois flotté, symbole de famille et d'harmonie.",
+        price: "40-60€",
+        image: "https://images.unsplash.com/photo-1513519245088-0e12902e35ca?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 3,
+        title: "Cadre famille généalogie",
+        category: "cadres-famille",
+        categoryName: "Cadres famille",
+        description: "Cadre personnalisé représentant l'arbre généalogique avec prénoms des membres de la famille.",
+        price: "50-80€",
+        image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 4,
+        title: "Galet couple romantique",
+        category: "galets",
+        categoryName: "Galets peints",
+        description: "Galet peint avec silhouette de couple enlacé, idéal pour la Saint-Valentin.",
+        price: "20-25€",
+        image: "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 5,
+        title: "Cadre amoureux personnalisé",
+        category: "cadres-amour",
+        categoryName: "Cadres couple",
+        description: "Cadre sur mesure avec prénoms et date de rencontre, décoré de galets et bois flotté.",
+        price: "45-70€",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 6,
+        title: "Portrait abstrait",
+        category: "portraits",
+        categoryName: "Portraits",
+        description: "Portrait expressif peint sur galet de grande taille, style moderne et artistique.",
+        price: "30-45€",
+        image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 7,
+        title: "Galet de naissance",
+        category: "evenements",
+        categoryName: "Événements spéciaux",
+        description: "Galet personnalisé pour célébrer une naissance avec prénom, date et petits pieds.",
+        price: "25-35€",
+        image: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 8,
+        title: "Arbre de vie argenté",
+        category: "arbres",
+        categoryName: "Arbres de vie",
+        description: "Création en fil argenté sur bois flotté naturel, élégant et intemporel.",
+        price: "45-65€",
+        image: "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 9,
+        title: "Galet paysage de montagne",
+        category: "galets",
+        categoryName: "Galets peints",
+        description: "Paysage de montagne enneigée peint à la main sur galet poli.",
+        price: "18-28€",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 10,
+        title: "Cadre mariage sur mesure",
+        category: "evenements",
+        categoryName: "Événements spéciaux",
+        description: "Création unique pour immortaliser un mariage avec noms des mariés et date.",
+        price: "60-100€",
+        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 11,
+        title: "Portrait de famille",
+        category: "portraits",
+        categoryName: "Portraits",
+        description: "Silhouettes de la famille peintes sur plusieurs galets assemblés.",
+        price: "40-60€",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 12,
+        title: "Création personnalisée",
+        category: "personnalise",
+        categoryName: "Sur mesure",
+        description: "Création entièrement sur mesure selon vos souhaits, thème et budget.",
+        price: "Variable",
+        image: "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 13,
+        title: "Galet mandala",
+        category: "galets",
+        categoryName: "Galets peints",
+        description: "Motif mandala détaillé peint sur galet, parfait pour la méditation et la décoration zen.",
+        price: "22-30€",
+        image: "https://images.unsplash.com/photo-1518709414768-a88981a4515d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 14,
+        title: "Cadre fratrie",
+        category: "cadres-famille",
+        categoryName: "Cadres famille",
+        description: "Représentation des frères et sœurs avec leurs prénoms sur bois flotté.",
+        price: "45-75€",
+        image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 15,
+        title: "Arbre de vie multicolore",
+        category: "arbres",
+        categoryName: "Arbres de vie",
+        description: "Arbre de vie aux branches colorées symbolisant la diversité familiale.",
+        price: "50-70€",
+        image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    const galleryGrid = document.getElementById('galleryGrid');
+    const searchInput = document.getElementById('searchInput');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const noResults = document.getElementById('noResults');
+
+    let currentFilter = 'all';
+
+    function displayCreations(filter = 'all', searchTerm = '') {
+      galleryGrid.innerHTML = '';
+      
+      const filtered = creations.filter(item => {
+        const matchesFilter = filter === 'all' || item.category === filter;
+        const matchesSearch = searchTerm === '' || 
+          item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.categoryName.toLowerCase().includes(searchTerm.toLowerCase());
+        
+        return matchesFilter && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        noResults.style.display = 'block';
+        return;
+      }
+
+      noResults.style.display = 'none';
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'gallery-item';
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.title}">
+          <div class="item-info">
+            <span class="item-category">${item.categoryName}</span>
+            <h3>${item.title}</h3>
+            <p>${item.description}</p>
+            <div class="item-price">Tarif indicatif : ${item.price}</div>
+            <a href="commande.html?creation=${encodeURIComponent(item.title)}" class="contact-btn">
+              Me contacter pour cette création
+            </a>
+          </div>
+        `;
+        galleryGrid.appendChild(card);
+      });
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.category;
+        displayCreations(currentFilter, searchInput.value);
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      displayCreations(currentFilter, e.target.value);
+    });
+
+    displayCreations();
+  </script>
+</body>
+</html>
