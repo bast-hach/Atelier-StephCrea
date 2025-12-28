@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarifs & Fonctionnement - L'Atelier StephCrea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: #f9f7f3;
+      color: #3d3d3d;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #d3a97d, #b9885c);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    header h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+    }
+
+    nav {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.2rem 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3d3d3d;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    nav a:hover {
+      color: #d3a97d;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.5rem;
+      color: #b9885c;
+      text-align: center;
+      margin-bottom: 3rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #d3a97d, transparent);
+    }
+
+    .intro-text {
+      text-align: center;
+      font-size: 1.2rem;
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: 15px;
+      padding: 2.5rem;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .pricing-card.featured {
+      border: 3px solid #d3a97d;
+      position: relative;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #d3a97d, #b9885c);
+      color: white;
+      padding: 0.4rem 1.5rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .pricing-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-card h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.8rem;
+      color: #b9885c;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .price-range {
+      font-size: 2rem;
+      color: #3d3d3d;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-card li {
+      padding: 0.6rem 0;
+      color: #666;
+      font-size: 1.05rem;
+    }
+
+    .pricing-card li::before {
+      content: "✓ ";
+      color: #b9885c;
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+
+    .process-section {
+      background: white;
+      padding: 4rem 2rem;
+      margin: 4rem 0;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step-number {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #d3a97d, #b9885c);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .step h3 {
+      font-family: 'Raleway', sans-serif;
+      color: #b9885c;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .step p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .faq-section {
+      max-width: 900px;
+      margin: 4rem auto;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .faq-item h3 {
+      font-family: 'Raleway', sans-serif;
+      color: #b9885c;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .faq-item p {
+      color: #555;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #b9885c, #d3a97d);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-radius: 15px;
+      margin-top: 4rem;
+    }
+
+    .cta-section h2 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: white;
+      color: #b9885c;
+      padding: 1.1rem 2.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .cta-btn:hover {
+      background-color: #f9f7f3;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background-color: #3d3d3d;
+      color: white;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: #d3a97d;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      margin: 0 0.8rem;
+    }
+
+    footer a:hover {
+      color: #b9885c;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header p {
+        font-size: 1.1rem;
+      }
+
+      nav ul {
+        gap: 1.2rem;
+        padding: 0 1rem;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .intro-text {
+        font-size: 1.1rem;
+      }
+
+      .pricing-grid {
+        gap: 2rem;
+      }
+
+      .process-steps {
+        gap: 2.5rem;
+      }
+
+      .container {
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tarifs & Fonctionnement</h1>
+    <p>Comment fonctionne la création sur mesure</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="exposition.html">Galerie</a></li>
+      <li><a href="fonctionnement.html">Tarifs & Fonctionnement</a></li>
+      <li><a href="commande.html">Commander</a></li>
+      <li><a href="a-propos.html">À propos</a></li>
+      <li><a href="avis.html">Avis clients</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2 class="section-title">Mes tarifs indicatifs</h2>
+    <p class="intro-text">
+      Chaque création est unique et personnalisée. Les tarifs varient selon la complexité, 
+      le temps de réalisation, les matériaux utilisés et vos souhaits. Voici des fourchettes 
+      indicatives pour vous donner une idée.
+    </p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-icon">🪨</div>
+        <h3>Galets peints</h3>
+        <div class="price-range">15-30€</div>
+        <ul>
+          <li>Galet poli naturel</li>
+          <li>Peinture à la main</li>
+          <li>Motifs simples ou élaborés</li>
+          <li>Vernis de protection</li>
+          <li>Pièce décorative ou cadeau</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card featured">
+        <span class="featured-badge">⭐ Populaire</span>
+        <div class="pricing-icon">🌳</div>
+        <h3>Arbres de vie</h3>
+        <div class="price-range">40-70€</div>
+        <ul>
+          <li>Fil métallique (doré/argenté)</li>
+          <li>Bois flotté authentique</li>
+          <li>Travail minutieux</li>
+          <li>Personnalisable</li>
+          <li>Symbolique forte</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-icon">🖼️</div>
+        <h3>Cadres famille</h3>
+        <div class="price-range">45-80€</div>
+        <ul>
+          <li>Cadre en bois flotté</li>
+          <li>Galets assemblés</li>
+          <li>Prénoms personnalisés</li>
+          <li>Arbre généalogique</li>
+          <li>Création sur mesure</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-icon">💕</div>
+        <h3>Cadres couple</h3>
+        <div class="price-range">40-65€</div>
+        <ul>
+          <li>Thème romantique</li>
+          <li>Prénoms et date</li>
+          <li>Matériaux naturels</li>
+          <li>Idéal mariage/St-Valentin</li>
+          <li>Unique et émouvant</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-icon">🎨</div>
+        <h3>Portraits sur galet</h3>
+        <div class="price-range">30-50€</div>
+        <ul>
+          <li>Portrait ou silhouette</li>
+          <li>Style artistique</li>
+          <li>Galet de grande taille</li>
+          <li>Peinture détaillée</li>
+          <li>Œuvre d'art unique</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-icon">✨</div>
+        <h3>Créations sur mesure</h3>
+        <div class="price-range">Variable</div>
+        <ul>
+          <li>100% personnalisé</li>
+          <li>Selon vos envies</li>
+          <li>Devis gratuit</li>
+          <li>Tous budgets acceptés</li>
+          <li>Projets spéciaux bienvenus</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section class="process-section">
+    <div class="container">
+      <h2 class="section-title">Comment ça marche ?</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Contact</h3>
+          <p>Contactez-moi via le formulaire ou par téléphone. Expliquez-moi votre projet, l'occasion, vos souhaits.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Échange</h3>
+          <p>Nous discutons ensemble des détails : thème, couleurs, matériaux, délai. Je vous propose un tarif.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Création</h3>
+          <p>Une fois d'accord, je me mets au travail avec passion. Je peux vous envoyer des photos de l'avancement.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Livraison</h3>
+          <p>Votre œuvre est terminée ! Retrait en main propre ou envoi postal soigné selon votre préférence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <h2 class="section-title">Questions fréquentes</h2>
+    <div class="faq-section">
+      <div class="faq-item">
+        <h3>💰 Comment sont calculés les tarifs ?</h3>
+        <p>Les prix dépendent de plusieurs facteurs : la taille de l'œuvre, le temps de réalisation (de quelques heures à plusieurs jours), la complexité des détails, les matériaux utilisés (fil doré, peintures spéciales, etc.), et le niveau de personnalisation souhaité.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>⏱️ Quels sont les délais de création ?</h3>
+        <p>Comptez généralement entre 1 et 3 semaines selon la complexité de votre commande et mon planning du moment. Pour les créations urgentes (anniversaire proche, mariage...), contactez-moi et je ferai de mon mieux pour vous accommoder.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>📦 Comment se passe la livraison ?</h3>
+        <p>Vous pouvez récupérer votre création en main propre si vous êtes dans ma région, ou je peux vous l'envoyer par La Poste dans un emballage soigné et sécurisé. Les frais de port sont en sus selon le poids et la destination.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>🎁 Puis-je offrir une création ?</h3>
+        <p>Absolument ! C'est même l'une des raisons principales pour lesquelles mes clients me contactent. Je peux inclure un emballage cadeau et une petite carte si vous le souhaitez.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>🔄 Puis-je demander des modifications ?</h3>
+        <p>Oui, avant de commencer la création, nous échangeons pour être sûrs d'être sur la même longueur d'onde. Je peux vous envoyer des photos en cours de réalisation. Une fois terminée, des petites modifications sont possibles selon la demande.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>🌊 D'où viennent les matériaux ?</h3>
+        <p>Je collecte personnellement les galets et le bois flotté lors de promenades en bord de mer. Chaque matériau est choisi avec soin et respect pour la nature. Les peintures et fils que j'utilise sont de qualité artistique.</p>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Une idée en tête ?</h2>
+      <p>N'hésitez pas à me contacter pour discuter de votre projet. Devis gratuit et sans engagement !</p>
+      <a href="commande.html" class="cta-btn">Me contacter maintenant</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 L'Atelier StephCrea — Créations artisanales avec passion</p>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="exposition.html">Galerie</a>
+      <a href="fonctionnement.html">Tarifs</a>
+      <a href="commande.html">Contact</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="avis.html">Avis</a>
+    </p>
+  </footer>
+</body>
+</html>
